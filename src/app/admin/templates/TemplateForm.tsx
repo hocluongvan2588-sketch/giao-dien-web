@@ -134,7 +134,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="font-bold">1. Mã HTML giao diện</h2>
             <div className="flex items-center gap-3">
-              <span className="text-xs text-brand-900/50">{(form.demo_html.length / 1024).toFixed(1)} KB</span>
+              <span className="text-xs text-zinc-500">{(form.demo_html.length / 1024).toFixed(1)} KB</span>
               <button type="button" className="btn-ghost px-3 py-1.5 text-xs" onClick={() => htmlFileRef.current?.click()}>
                 Chọn file .html
               </button>
@@ -149,7 +149,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
             onChange={(e) => set("demo_html", e.target.value)}
             required
           />
-          <p className="mt-2 text-xs text-brand-900/55">
+          <p className="mt-2 text-xs text-zinc-500">
             Mẹo: CSS/JS nên để inline hoặc dùng link CDN; ảnh dùng URL tuyệt đối (https://…) để demo và thumbnail hiển thị đúng.
           </p>
         </section>
@@ -159,7 +159,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
           {preview.trim() ? (
             <DevicePreview srcDoc={preview} height={640} />
           ) : (
-            <div className="card grid h-60 place-items-center text-sm text-brand-900/50">Dán HTML để xem trước</div>
+            <div className="card grid h-60 place-items-center text-sm text-zinc-500">Dán HTML để xem trước</div>
           )}
         </section>
       </div>
@@ -217,7 +217,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
 
         <section className="card space-y-3 p-5">
           <h2 className="font-bold">4. File giao cho khách</h2>
-          <p className="text-xs text-brand-900/60">
+          <p className="text-xs text-zinc-600">
             Mặc định khách nhận chính file HTML ở trên. Nếu giao diện có nhiều file (ảnh, CSS, JS), hãy tải lên gói .zip.
           </p>
           <p className="rounded-lg bg-brand-50 px-3 py-2 text-xs">
@@ -240,7 +240,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
           <h2 className="font-bold">5. Thumbnail</h2>
           <div className="group aspect-[4/3] overflow-hidden rounded-xl bg-brand-50">
             {thumb ? <div className="thumb-scroll h-full w-full" style={{ backgroundImage: `url("${thumb}")` }} /> : (
-              <div className="grid h-full place-items-center px-6 text-center text-xs text-brand-900/50">Ảnh sẽ được chụp tự động sau khi lưu</div>
+              <div className="grid h-full place-items-center px-6 text-center text-xs text-zinc-500">Ảnh sẽ được chụp tự động sau khi lưu</div>
             )}
           </div>
           {isEdit && (

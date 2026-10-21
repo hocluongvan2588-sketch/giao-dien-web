@@ -38,7 +38,7 @@ export function ImportSamples() {
       <button type="button" onClick={run} disabled={busy} className="btn-ghost">
         {busy ? "Đang xử lý…" : "Nhập 4 giao diện mẫu"}
       </button>
-      {message && <span className="text-sm text-brand-900/70" role="status">{message}</span>}
+      {message && <span className="text-sm text-zinc-600" role="status">{message}</span>}
     </div>
   );
 }

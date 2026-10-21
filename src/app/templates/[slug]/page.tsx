@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Check, Eye } from "lucide-react";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -56,42 +57,51 @@ export default async function TemplateDetailPage({ params }: Props) {
     <>
       <SiteHeader />
       <main className="container-x py-8">
-        <nav className="text-sm text-brand-900/60" aria-label="Breadcrumb">
+        <nav className="text-sm text-zinc-600" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-brand-700">Trang chủ</Link> /{" "}
           <Link href={`/?danh-muc=${t.category}#giao-dien`} className="hover:text-brand-700">{categoryLabel(t.category)}</Link> /{" "}
-          <span className="text-brand-900">{t.name}</span>
+          <span className="text-ink">{t.name}</span>
         </nav>
 
         <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_340px]">
           <div className="min-w-0">
-            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{t.name}</h1>
-            <p className="mt-2 text-brand-900/70">{t.short_description}</p>
+            <h1 className="text-3xl font-semibold tracking-[-.03em] sm:text-4xl">{t.name}</h1>
+            <p className="mt-2 text-zinc-600">{t.short_description}</p>
             <div className="mt-6">
               <DevicePreview src={`/demo/${t.slug}`} height={760} />
             </div>
             {t.description && (
               <section className="card mt-8 p-6">
                 <h2 className="text-xl font-bold">Mô tả giao diện</h2>
-                <div className="mt-3 whitespace-pre-line text-sm leading-relaxed text-brand-900/80">{t.description}</div>
+                <div className="mt-3 whitespace-pre-line text-sm leading-relaxed text-zinc-700">{t.description}</div>
               </section>
             )}
           </div>
 
           <aside id="mua" className="scroll-mt-24">
-            <div className="card sticky top-24 p-6">
+            <div className="card sticky top-24 p-6 shadow-lift">
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-500">{categoryLabel(t.category)}</p>
               <div className="mt-2 flex items-end gap-3">
-                <p className="text-3xl font-extrabold text-brand-800">{formatVnd(price)}</p>
-                {onSale && <p className="pb-1 text-sm text-brand-900/45 line-through">{formatVnd(t.price)}</p>}
+                <p className="text-3xl font-semibold tracking-tight text-ink">{formatVnd(price)}</p>
+                {onSale && <p className="pb-1 text-sm text-zinc-500 line-through">{formatVnd(t.price)}</p>}
               </div>
               <div className="mt-5"><BuyButton templateId={t.id} slug={t.slug} /></div>
-              <a href={`/demo/${t.slug}`} target="_blank" rel="noopener" className="btn-ghost mt-2 w-full py-3">Xem demo toàn màn hình</a>
-              <ul className="mt-6 space-y-2.5 text-sm text-brand-900/80">
-                <li>✅ Mã nguồn HTML/CSS/JS đầy đủ</li>
-                <li>✅ Responsive desktop · tablet · mobile</li>
-                <li>✅ Thanh toán VietQR, nhận file tự động</li>
-                <li>✅ Tải lại không giới hạn</li>
-                <li>✅ Hỗ trợ cài đặt từ Vexim Global</li>
+              <a href={`/demo/${t.slug}`} target="_blank" rel="noopener" className="btn-ghost mt-2 w-full py-3"><Eye className="h-4 w-4" /> Xem demo toàn màn hình</a>
+              <ul className="mt-6 space-y-3 border-t border-zinc-100 pt-6 text-sm text-zinc-700">
+                {[
+                  "Mã nguồn HTML/CSS/JS đầy đủ",
+                  "Responsive desktop · tablet · mobile",
+                  "Thanh toán VietQR, nhận file tự động",
+                  "Tải lại không giới hạn",
+                  "Hỗ trợ cài đặt từ Vexim Global",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2.5">
+                    <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-50 text-brand-600">
+                      <Check className="h-3 w-3" strokeWidth={3} />
+                    </span>
+                    {item}
+                  </li>
+                ))}
               </ul>
               {t.tags.length > 0 && (
                 <div className="mt-6 flex flex-wrap gap-1.5">
@@ -100,14 +110,14 @@ export default async function TemplateDetailPage({ params }: Props) {
                   ))}
                 </div>
               )}
-              {t.sales_count > 0 && <p className="mt-4 text-xs text-brand-900/55">{t.sales_count} khách hàng đã mua</p>}
+              {t.sales_count > 0 && <p className="mt-4 text-xs text-zinc-500">{t.sales_count} khách hàng đã mua</p>}
             </div>
           </aside>
         </div>
 
         {related && related.length > 0 && (
           <section className="mt-16">
-            <h2 className="text-2xl font-extrabold tracking-tight">Giao diện cùng lĩnh vực</h2>
+            <h2 className="text-2xl font-bold tracking-tight">Giao diện cùng lĩnh vực</h2>
             <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {(related as TemplateCardData[]).map((r) => <TemplateCard key={r.id} t={r} />)}
             </div>

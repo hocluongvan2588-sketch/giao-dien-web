@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import type { OrderStatus } from "@/lib/types";
 
 export function PaymentStatus({ orderId, initialStatus }: { orderId: string; initialStatus: OrderStatus }) {
@@ -26,9 +27,9 @@ export function PaymentStatus({ orderId, initialStatus }: { orderId: string; ini
   if (status === "paid") {
     return (
       <div className="rounded-2xl bg-brand-50 p-6 text-center">
-        <div className="text-4xl" aria-hidden>🎉</div>
-        <h2 className="mt-2 text-xl font-extrabold text-brand-800">Thanh toán thành công!</h2>
-        <p className="mt-1 text-sm text-brand-900/70">Cảm ơn bạn đã mua giao diện tại Vexim Harvest.</p>
+        <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-brand-600 text-white shadow-lift"><Check className="h-7 w-7" strokeWidth={2.5} /></div>
+        <h2 className="mt-4 text-xl font-bold text-ink">Thanh toán thành công!</h2>
+        <p className="mt-1 text-sm text-zinc-600">Cảm ơn bạn đã mua giao diện tại Vexim Harvest.</p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
           <a href={`/api/download/${orderId}`} className="btn-primary px-6 py-3">Tải mã nguồn</a>
           <Link href="/account" className="btn-ghost px-6 py-3">Đơn hàng của tôi</Link>

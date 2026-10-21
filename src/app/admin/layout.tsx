@@ -14,7 +14,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <main className="grid min-h-screen place-items-center p-6 text-center">
         <div>
           <h1 className="text-2xl font-bold">Bạn không có quyền truy cập trang quản trị</h1>
-          <p className="mt-2 text-sm text-brand-900/60">Tài khoản {user.email} chưa nằm trong ADMIN_EMAILS.</p>
+          <p className="mt-2 text-sm text-zinc-600">Tài khoản {user.email} chưa nằm trong ADMIN_EMAILS.</p>
           <Link href="/" className="btn-primary mt-6">Về trang chủ</Link>
         </div>
       </main>
@@ -22,8 +22,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="min-h-screen bg-brand-50/40">
-      <header className="border-b border-brand-100 bg-white">
+    <div className="min-h-screen bg-zinc-50">
+      <header className="border-b border-zinc-200 bg-white">
         <div className="container-x flex h-16 items-center justify-between gap-4">
           <div className="flex items-center gap-8">
             <Logo />

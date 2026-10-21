@@ -20,7 +20,7 @@ async function capture(html) {
   const height = Math.min(await page.evaluate(() => document.documentElement.scrollHeight), 5200);
   const shot = await page.screenshot({
     type: "jpeg",
-    quality: 72,
+    quality: 82,
     clip: { x: 0, y: 0, width: 1440, height },
     captureBeyondViewport: true,
   });

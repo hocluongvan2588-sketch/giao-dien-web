@@ -13,17 +13,17 @@ export default async function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold">Đơn hàng</h1>
-      <p className="mt-1 text-sm text-brand-900/60">Đơn được xác nhận tự động qua webhook SePay. Dùng “Xác nhận” khi khách chuyển sai nội dung.</p>
+      <h1 className="text-2xl font-bold">Đơn hàng</h1>
+      <p className="mt-1 text-sm text-zinc-600">Đơn được xác nhận tự động qua webhook SePay. Dùng “Xác nhận” khi khách chuyển sai nội dung.</p>
       <div className="card mt-6 overflow-x-auto">
         <table className="w-full min-w-[860px] text-sm">
-          <thead className="border-b border-brand-100 text-left text-xs uppercase tracking-wide text-brand-900/55">
+          <thead className="border-b border-zinc-200 text-left text-xs uppercase tracking-wide text-zinc-500">
             <tr>
               <th className="p-4">Mã đơn</th><th className="p-4">Khách hàng</th><th className="p-4">Giao diện</th>
               <th className="p-4">Số tiền</th><th className="p-4">Trạng thái</th><th className="p-4">Thời gian</th><th className="p-4" />
             </tr>
           </thead>
-          <tbody className="divide-y divide-brand-100">
+          <tbody className="divide-y divide-zinc-100">
             {(orders ?? []).map((o) => (
               <tr key={o.id}>
                 <td className="p-4 font-mono font-semibold">{o.code}</td>
@@ -32,13 +32,13 @@ export default async function AdminOrdersPage() {
                 <td className="p-4">{formatVnd(o.amount)}</td>
                 <td className="p-4">
                   {LABEL[o.status as keyof typeof LABEL]}
-                  {o.payment_ref && <span className="block text-xs text-brand-900/50">Ref: {o.payment_ref}</span>}
+                  {o.payment_ref && <span className="block text-xs text-zinc-500">Ref: {o.payment_ref}</span>}
                 </td>
-                <td className="p-4 text-brand-900/60">{formatDate(o.paid_at ?? o.created_at)}</td>
+                <td className="p-4 text-zinc-600">{formatDate(o.paid_at ?? o.created_at)}</td>
                 <td className="p-4 text-right">{o.status === "pending" && <OrderActions id={o.id} />}</td>
               </tr>
             ))}
-            {!orders?.length && <tr><td colSpan={7} className="p-10 text-center text-brand-900/50">Chưa có đơn hàng.</td></tr>}
+            {!orders?.length && <tr><td colSpan={7} className="p-10 text-center text-zinc-500">Chưa có đơn hàng.</td></tr>}
           </tbody>
         </table>
       </div>
