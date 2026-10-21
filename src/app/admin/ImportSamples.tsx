@@ -36,7 +36,7 @@ export function ImportSamples() {
   return (
     <div className="flex flex-wrap items-center gap-3">
       <button type="button" onClick={run} disabled={busy} className="btn-ghost">
-        {busy ? "Đang xử lý…" : "Nhập 4 giao diện mẫu"}
+        {busy ? "Đang xử lý…" : "Nhập giao diện mẫu"}
       </button>
       {message && <span className="text-sm text-zinc-600" role="status">{message}</span>}
     </div>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đất Lành Farm — Nông sản sạch từ vùng trồng đến bữa cơm nhà bạn</title>
+<meta name="description" content="Đất Lành Farm kết nối trực tiếp nông hộ ở Mộc Châu, Đà Lạt và Đồng Tháp với gia đình bạn. Rau củ, trái cây, gạo đặc sản có truy xuất nguồn gốc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<!--
+  ============================================================
+  ĐỔI ẢNH: tìm các thẻ <img ... src="https://..."> và thay bằng
+  link ảnh thật của bạn (ảnh nông dân, vùng trồng, sản phẩm).
+  Nếu ảnh không tải được, khung ảnh tự hiện hình minh hoạ thay thế.
+  ============================================================
+-->
+<style>
+:root{
+  --green:#2f6b3b; --green-d:#1f4a28; --green-l:#e8f0e3;
+  --leaf:#7fb069; --sun:#e9a23b; --clay:#b5652d;
+  --cream:#faf6ee; --paper:#fffdf8; --ink:#1d2a1f; --muted:#5f6b5f; --line:#e6e0d2;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.serif{font-family:'Lora',Georgia,serif}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;transition:.25s;border:0;cursor:pointer;font-family:inherit}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-d);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{background:var(--cream)}
+.btn-outline{border:1.5px solid rgba(255,255,255,.6);color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.12)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--clay)}
+.eyebrow:before{content:"";width:28px;height:1.5px;background:currentColor}
+h2.title{font-family:'Lora',Georgia,serif;font-size:clamp(30px,4vw,46px);line-height:1.15;font-weight:600;margin-top:14px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:17px;margin-top:16px;max-width:620px}
+section{padding:110px 0}
+
+/* Khung ảnh có minh hoạ dự phòng */
+.ph{position:relative;overflow:hidden;background:linear-gradient(160deg,#dfe9d3,#c5d8b4)}
+.ph>svg{position:absolute;inset:0;width:100%;height:100%}
+.ph>img{position:relative;width:100%;height:100%;object-fit:cover}
+
+/* Header */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:.3s}
+header.solid{background:rgba(250,246,238,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Lora',serif;font-size:23px;font-weight:700;color:#fff;transition:.3s}
+header.solid .logo{color:var(--ink)}
+.logo svg{width:36px;height:36px}
+.menu{display:flex;gap:34px;font-size:15px;font-weight:500;color:rgba(255,255,255,.9)}
+header.solid .menu{color:var(--ink)}
+.menu a{position:relative}
+.menu a:after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--sun);transition:.25s}
+.menu a:hover:after{width:100%}
+.nav-right{display:flex;align-items:center;gap:14px}
+.cart{position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.15);color:#fff;transition:.3s}
+header.solid .cart{background:var(--green-l);color:var(--green)}
+.cart b{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;border-radius:10px;background:var(--sun);color:#fff;font-size:11px;display:grid;place-items:center;padding:0 5px}
+.burger{display:none;background:none;border:0;color:#fff;cursor:pointer}
+header.solid .burger{color:var(--ink)}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:#fff;padding:0 0 90px;overflow:hidden}
+.hero>.ph{position:absolute;inset:0}
+.hero>.ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,30,18,.25) 0%,rgba(15,30,18,.15) 40%,rgba(15,30,18,.75) 100%)}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end}
+.hero h1{font-family:'Lora',serif;font-size:clamp(40px,6.2vw,78px);line-height:1.05;font-weight:600;letter-spacing:-.02em;margin-top:18px}
+.hero h1 em{font-style:italic;color:#f6d38b}
+.hero p{font-size:18px;opacity:.9;max-width:560px;margin-top:22px}
+.hero .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.hero .eyebrow{color:#f6d38b}
+.hero-card{background:rgba(255,255,255,.12);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22);border-radius:var(--r);padding:24px;justify-self:end;max-width:340px}
+.hero-card .row{display:flex;gap:14px;align-items:center}
+.hero-card .avatar{width:56px;height:56px;border-radius:50%;flex:none;border:2px solid rgba(255,255,255,.6)}
+.hero-card q{display:block;font-family:'Lora',serif;font-style:italic;font-size:17px;line-height:1.5;margin-top:16px}
+.hero-card small{opacity:.75}
+
+/* Trust bar */
+.trust{background:var(--paper);border-bottom:1px solid var(--line)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.trust div{display:flex;gap:14px;align-items:center;padding:28px 20px;border-right:1px solid var(--line)}
+.trust div:last-child{border-right:0}
+.trust i{width:44px;height:44px;border-radius:12px;background:var(--green-l);color:var(--green);display:grid;place-items:center;flex:none}
+.trust b{display:block;font-size:15px}
+.trust span{font-size:13px;color:var(--muted)}
+
+/* Story */
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.story-media{position:relative}
+.story-media .main{border-radius:24px;aspect-ratio:4/5}
+.story-media .sub{position:absolute;right:-40px;bottom:-40px;width:46%;aspect-ratio:1;border-radius:20px;border:8px solid var(--cream)}
+.story-media .badge{position:absolute;left:-26px;top:40px;background:var(--sun);color:#fff;border-radius:50%;width:120px;height:120px;display:grid;place-items:center;text-align:center;font-family:'Lora',serif;font-weight:600;line-height:1.1;box-shadow:0 18px 40px -12px rgba(0,0,0,.35);transform:rotate(-8deg)}
+.story-media .badge b{font-size:34px;display:block}
+.story blockquote{font-family:'Lora',serif;font-style:italic;font-size:22px;line-height:1.5;border-left:3px solid var(--sun);padding-left:22px;margin:30px 0;color:var(--green-d)}
+.story p{color:var(--muted);margin-top:14px}
+.sign{display:flex;align-items:center;gap:14px;margin-top:30px}
+.sign .avatar{width:54px;height:54px;border-radius:50%}
+.sign b{display:block}
+.sign span{font-size:14px;color:var(--muted)}
+
+/* Regions */
+.regions{background:var(--green-d);color:#fff;position:relative;overflow:hidden}
+.regions .eyebrow{color:#f6d38b}
+.regions .lead{color:rgba(255,255,255,.75)}
+.region-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px}
+.region{border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:.3s}
+.region:hover{transform:translateY(-6px);background:rgba(255,255,255,.1)}
+.region .ph{aspect-ratio:4/3}
+.region .body{padding:24px}
+.region small{color:#f6d38b;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+.region h3{font-family:'Lora',serif;font-size:24px;margin:6px 0 10px}
+.region p{color:rgba(255,255,255,.75);font-size:15px}
+.region .meta{display:flex;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:rgba(255,255,255,.8)}
+
+/* Products */
+.shop-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:.2s;color:var(--ink)}
+.tab.active,.tab:hover{background:var(--green);border-color:var(--green);color:#fff}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px}
+.product{background:var(--paper);border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:.3s;display:flex;flex-direction:column}
+.product:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(31,74,40,.35)}
+.product .ph{aspect-ratio:1}
+.product .ph img{transition:transform .6s}
+.product:hover .ph img{transform:scale(1.06)}
+.product .tag{position:absolute;left:12px;top:12px;z-index:2;background:#fff;color:var(--green);font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px}
+.product .body{padding:18px;display:flex;flex-direction:column;flex:1}
+.product .origin{font-size:12px;color:var(--clay);font-weight:600;display:flex;align-items:center;gap:5px}
+.product h3{font-size:17px;margin:4px 0 6px;font-weight:600}
+.product p{font-size:14px;color:var(--muted);flex:1}
+.product .foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.product .price{font-weight:700;font-size:18px;color:var(--green-d)}
+.product .price small{font-weight:400;font-size:13px;color:var(--muted)}
+.add{width:42px;height:42px;border-radius:50%;border:0;background:var(--green-l);color:var(--green);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.add:hover{background:var(--green);color:#fff;transform:rotate(90deg)}
+.product[hidden]{display:none}
+
+/* Journey */
+.journey{background:var(--paper);border-block:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:60px;position:relative}
+.steps:before{content:"";position:absolute;left:10%;right:10%;top:36px;border-top:2px dashed #cbbf9f}
+.step{text-align:center;position:relative}
+.step .ico{width:72px;height:72px;border-radius:50%;margin:0 auto;background:var(--cream);border:2px solid var(--line);display:grid;place-items:center;color:var(--green);transition:.3s}
+.step:hover .ico{background:var(--green);color:#fff;border-color:var(--green)}
+.step small{display:block;margin-top:18px;font-size:12px;font-weight:600;color:var(--clay);letter-spacing:.1em}
+.step h4{font-size:17px;margin:4px 0 6px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:70px}
+.stat{text-align:center}
+.stat b{font-family:'Lora',serif;font-size:46px;color:var(--green);line-height:1}
+.stat span{display:block;color:var(--muted);margin-top:8px;font-size:15px}
+.certs{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:50px}
+.certs span{padding:10px 20px;border:1.5px solid var(--line);border-radius:999px;font-weight:600;font-size:14px;color:var(--green-d);background:#fff}
+
+/* Testimonials */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.review{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px}
+.stars{color:var(--sun);letter-spacing:3px}
+.review q{display:block;font-family:'Lora',serif;font-size:18px;line-height:1.55;margin:16px 0 24px;quotes:"“" "”"}
+.review .who{display:flex;gap:12px;align-items:center}
+.review .avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff}
+.review b{display:block;font-size:15px}
+.review span{font-size:13px;color:var(--muted)}
+
+/* Subscribe box */
+.box{border-radius:28px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;background:var(--sun);color:#fff}
+.box .ph{min-height:420px}
+.box .content{padding:60px}
+.box h2{font-family:'Lora',serif;font-size:clamp(28px,3.4vw,42px);line-height:1.15}
+.box ul{list-style:none;margin:24px 0 32px;display:grid;gap:12px}
+.box li{display:flex;gap:10px;align-items:center}
+.box li:before{content:"✓";width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:13px;flex:none}
+.box .price{font-size:15px;opacity:.9;margin-bottom:22px}
+.box .price b{font-size:32px;font-family:'Lora',serif}
+
+/* Journal */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px}
+.post .ph{aspect-ratio:16/10;border-radius:var(--r)}
+.post small{display:block;margin-top:18px;color:var(--clay);font-weight:600;font-size:13px}
+.post h3{font-family:'Lora',serif;font-size:21px;line-height:1.35;margin-top:6px}
+.post p{color:var(--muted);font-size:15px;margin-top:8px}
+
+/* Footer */
+footer{background:#152a1a;color:rgba(255,255,255,.7);padding:80px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px}
+footer .logo{color:#fff}
+footer h4{color:#fff;font-size:15px;margin-bottom:16px}
+footer ul{list-style:none;display:grid;gap:10px;font-size:15px}
+footer a:hover{color:#fff}
+.news{display:flex;margin-top:16px;background:rgba(255,255,255,.08);border-radius:999px;padding:5px}
+.news input{flex:1;background:none;border:0;color:#fff;padding:0 16px;font:inherit;outline:none;min-width:0}
+.news input::placeholder{color:rgba(255,255,255,.5)}
+.copy{border-top:1px solid rgba(255,255,255,.1);margin-top:60px;padding-top:26px;font-size:14px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:14px 22px;border-radius:999px;font-size:14px;z-index:100;transition:.35s;box-shadow:0 12px 30px rgba(0,0,0,.25);opacity:0;visibility:hidden}
+.toast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
+
+/* Hiệu ứng xuất hiện khi cuộn (chỉ bật khi có JS) */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.js .reveal.in{opacity:1;transform:none}
+
+@media(max-width:1024px){
+  .products{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:repeat(3,1fr)}.steps:before{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  section{padding:80px 0}
+  .menu{display:none}.burger{display:block}
+  .menu.open{display:flex;flex-direction:column;position:absolute;top:78px;left:16px;right:16px;background:var(--paper);color:var(--ink);padding:24px;border-radius:var(--r);box-shadow:0 20px 40px rgba(0,0,0,.15);gap:18px}
+  .hero-inner,.story .wrap,.box{grid-template-columns:1fr}
+  .hero-card{justify-self:start}
+  .trust .wrap{grid-template-columns:1fr 1fr}.trust div:nth-child(2){border-right:0}
+  .region-grid,.reviews,.posts{grid-template-columns:1fr}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .story-media .sub{right:-10px}.story-media .badge{left:-6px}
+  .stats{grid-template-columns:1fr 1fr}
+  .box .content{padding:40px 28px}.box .ph{min-height:260px}
+}
+@media(max-width:520px){
+  .products,.steps{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .trust .wrap{grid-template-columns:1fr}.trust div{border-right:0;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG dùng chung: hình minh hoạ dự phòng khi ảnh chưa tải được -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d9a6"/><stop offset=".55" stop-color="#f3c98a"/><stop offset="1" stop-color="#cfe0b8"/></linearGradient>
+    <symbol id="terraces" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+      <rect width="800" height="600" fill="url(#sky)"/>
+      <circle cx="590" cy="190" r="70" fill="#fbe7b8"/>
+      <path d="M0 300 C120 230 220 250 320 210 S540 150 800 230 V600 H0Z" fill="#9dbb7e"/>
+      <path d="M0 360 C140 300 260 330 380 290 S620 240 800 300 V600 H0Z" fill="#7fa863"/>
+      <path d="M0 420 C160 370 300 400 430 360 S660 320 800 370 V600 H0Z" fill="#5f8f4a"/>
+      <path d="M0 480 C170 440 320 470 460 430 S680 400 800 440 V600 H0Z" fill="#4a7a3a"/>
+      <path d="M0 540 C180 510 330 530 480 500 S700 480 800 500 V600 H0Z" fill="#355f2c"/>
+      <g stroke="#c9dca8" stroke-width="2" fill="none" opacity=".5">
+        <path d="M0 375 C140 315 260 345 380 305 S620 255 800 315"/>
+        <path d="M0 435 C160 385 300 415 430 375 S660 335 800 385"/>
+        <path d="M0 495 C170 455 320 485 460 445 S680 415 800 455"/>
+      </g>
+    </symbol>
+    <symbol id="farmer" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="500" fill="#e9dcc0"/>
+      <circle cx="300" cy="120" r="56" fill="#f3d08b"/>
+      <path d="M0 330 C90 300 170 320 260 290 S360 280 400 300 V500 H0Z" fill="#8db170"/>
+      <path d="M0 390 C100 360 200 380 300 350 S380 345 400 360 V500 H0Z" fill="#6b9852"/>
+      <path d="M200 135 L120 200 H280 Z" fill="#e4c47c" stroke="#b8954d" stroke-width="3"/>
+      <circle cx="200" cy="225" r="34" fill="#c98f62"/>
+      <path d="M150 300 C150 262 175 252 200 252 S250 262 250 300 L262 430 H138 Z" fill="#3e6b8a"/>
+      <path d="M250 300 L300 360 L290 372 L240 320" fill="#c98f62"/>
+      <path d="M150 300 L118 370 L132 378 L162 322" fill="#c98f62"/>
+      <path d="M286 352 C310 330 336 336 344 360 C320 352 306 360 296 372 Z" fill="#5f9b44"/>
+      <rect x="150" y="430" width="40" height="70" fill="#2c3e2f"/><rect x="210" y="430" width="40" height="70" fill="#2c3e2f"/>
+    </symbol>
+    <symbol id="produce" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="400" fill="#eef3e6"/>
+      <circle cx="200" cy="215" r="90" fill="#dfe9cf"/>
+      <path d="M200 140 C150 150 130 210 160 260 C180 290 220 290 240 260 C270 210 250 150 200 140Z" fill="#7fb069"/>
+      <path d="M200 150 V280" stroke="#5c8f4a" stroke-width="5"/>
+      <path d="M200 190 L170 170 M200 220 L232 200 M200 250 L172 232" stroke="#5c8f4a" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#7fb069"/><path d="M20 30V18" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M20 18c0-5 3.5-8.5 9-8.5 0 6-3.5 9.5-9 8.5Z" fill="#fff"/><path d="M20 22c0-4-3-7-8-7 0 5 3 7.6 8 7Z" fill="#fff" opacity=".8"/></svg>
+      Đất Lành
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#cau-chuyen">Câu chuyện</a>
+      <a href="#vung-trong">Vùng trồng</a>
+      <a href="#san-pham">Sản phẩm</a>
+      <a href="#hanh-trinh">Hành trình</a>
+      <a href="#nhat-ky">Nhật ký</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#san-pham" class="cart" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <b id="cartCount">0</b>
+      </a>
+      <button class="burger" id="burger" aria-label="Mở menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ph">
+    <svg><use href="#terraces"/></svg>
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=2000&q=80&auto=format&fit=crop" alt="Cánh đồng lúa chín lúc hoàng hôn" onerror="this.remove()">
+  </div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">Nông sản sạch · Truy xuất nguồn gốc</span>
+      <h1>Từ những thửa ruộng <em>bậc thang</em> đến bữa cơm nhà bạn</h1>
+      <p>Đất Lành kết nối trực tiếp hơn 60 nông hộ ở Mộc Châu, Đà Lạt và Đồng Tháp với gia đình bạn. Mỗi sản phẩm đều có tên người trồng, vùng đất và ngày thu hoạch.</p>
+      <div class="cta">
+        <a href="#san-pham" class="btn btn-light">Mua nông sản tươi
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#cau-chuyen" class="btn btn-outline">Nghe câu chuyện của chúng tôi</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="row">
+        <div class="ph avatar"><svg><use href="#farmer"/></svg></div>
+        <div><b>Bác Sùng A Páo</b><br><small>Nông dân Mộc Châu · 32 năm trồng rau</small></div>
+      </div>
+      <q>Rau mình trồng cho con cháu ăn thế nào, thì gửi xuống thành phố cũng y như vậy.</q>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="wrap">
+    <div><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></i><p><b>Chuẩn VietGAP</b><span>Kiểm nghiệm từng lô hàng</span></p></div>
+    <div><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7Z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></i><p><b>Giao trong 24 giờ</b><span>Xe lạnh từ vùng trồng</span></p></div>
+    <div><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4"/></svg></i><p><b>Mã QR truy xuất</b><span>Biết rõ ai trồng, trồng ở đâu</span></p></div>
+    <div><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></i><p><b>Đổi trả 100%</b><span>Nếu sản phẩm không tươi</span></p></div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="cau-chuyen">
+  <div class="wrap">
+    <div class="story-media reveal">
+      <div class="ph main">
+        <svg><use href="#farmer"/></svg>
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1000&q=80&auto=format&fit=crop" alt="Người nông dân chăm sóc vườn rau" onerror="this.remove()">
+      </div>
+      <div class="ph sub">
+        <svg><use href="#produce"/></svg>
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80&auto=format&fit=crop" alt="Rau củ vừa thu hoạch" onerror="this.remove()">
+      </div>
+      <div class="badge"><span><b>12</b>năm<br>gắn bó</span></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Câu chuyện của Đất Lành</span>
+      <h2 class="title">Bắt đầu từ một vườn rau nhỏ trên cao nguyên Mộc Châu</h2>
+      <p>Năm 2013, chúng tôi lên Mộc Châu và gặp bác Páo, người vẫn trồng rau theo cách của cha ông: ủ phân chuồng, tưới nước suối, bắt sâu bằng tay. Rau của bác ngọt, giòn và để được lâu, nhưng thương lái chỉ trả bằng một nửa giá rau phun thuốc.</p>
+      <blockquote>“Chúng tôi tin rằng người trồng tử tế xứng đáng được trả công tử tế, và người ăn xứng đáng biết thực phẩm của mình đến từ đâu.”</blockquote>
+      <p>Hôm nay, Đất Lành đồng hành cùng hơn 60 nông hộ ở 3 vùng trồng. Chúng tôi bao tiêu sản phẩm với giá cao hơn thị trường 20–30%, hỗ trợ giống, kỹ thuật canh tác hữu cơ và đưa nông sản đến tay bạn chỉ sau 24 giờ thu hoạch.</p>
+      <div class="sign">
+        <div class="ph avatar"><svg><use href="#farmer"/></svg></div>
+        <div><b>Nguyễn Minh An</b><span>Nhà sáng lập Đất Lành Farm</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGIONS -->
+<section class="regions" id="vung-trong">
+  <div class="wrap">
+    <span class="eyebrow">Vùng trồng</span>
+    <h2 class="title">Ba vùng đất, ba hương vị riêng</h2>
+    <p class="lead">Mỗi vùng trồng được chọn vì thổ nhưỡng, khí hậu và những người nông dân hiểu đất của mình nhất.</p>
+    <div class="region-grid">
+      <article class="region reveal">
+        <div class="ph"><svg><use href="#terraces"/></svg><img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900&q=80&auto=format&fit=crop" alt="Đồi chè và ruộng rau Mộc Châu" onerror="this.remove()"></div>
+        <div class="body">
+          <small>Sơn La</small>
+          <h3>Cao nguyên Mộc Châu</h3>
+          <p>Khí hậu mát quanh năm, sương sớm dày. Nổi tiếng với rau cải mèo, su su, mận hậu và chè Shan tuyết.</p>
+          <div class="meta"><span>⛰ 1.050m</span><span>🌡 18–22°C</span><span>👨‍🌾 24 hộ</span></div>
+        </div>
+      </article>
+      <article class="region reveal">
+        <div class="ph"><svg><use href="#terraces"/></svg><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=900&q=80&auto=format&fit=crop" alt="Nông trại rau Đà Lạt" onerror="this.remove()"></div>
+        <div class="body">
+          <small>Lâm Đồng</small>
+          <h3>Thung lũng Đà Lạt</h3>
+          <p>Đất đỏ bazan màu mỡ, nhiệt độ ổn định. Nơi cho ra bơ sáp, dâu tây, atisô và rau ôn đới ngon nhất Việt Nam.</p>
+          <div class="meta"><span>⛰ 1.500m</span><span>🌡 15–24°C</span><span>👨‍🌾 22 hộ</span></div>
+        </div>
+      </article>
+      <article class="region reveal">
+        <div class="ph"><svg><use href="#terraces"/></svg><img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=900&q=80&auto=format&fit=crop" alt="Đồng ruộng Đồng Tháp" onerror="this.remove()"></div>
+        <div class="body">
+          <small>Đồng Tháp</small>
+          <h3>Đồng bằng Tháp Mười</h3>
+          <p>Phù sa sông Mê Kông bồi đắp mỗi mùa nước nổi. Quê hương của gạo ST25, sen Tháp Mười và xoài cát Hoà Lộc.</p>
+          <div class="meta"><span>🌊 Phù sa</span><span>🌡 26–32°C</span><span>👨‍🌾 16 hộ</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="san-pham">
+  <div class="wrap">
+    <div class="shop-head">
+      <div>
+        <span class="eyebrow">Cửa hàng</span>
+        <h2 class="title">Thu hoạch tuần này</h2>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-filter="all">Tất cả</button>
+        <button class="tab" data-filter="rau">Rau củ</button>
+        <button class="tab" data-filter="qua">Trái cây</button>
+        <button class="tab" data-filter="gao">Gạo & hạt</button>
+        <button class="tab" data-filter="dacsan">Đặc sản</button>
+      </div>
+    </div>
+
+    <div class="products" id="products">
+      <article class="product reveal" data-cat="rau">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80&auto=format&fit=crop" alt="Rau cải hữu cơ" onerror="this.remove()"><span class="tag">Hữu cơ</span></div>
+        <div class="body"><span class="origin">📍 Mộc Châu · Bác Páo</span><h3>Rau cải mèo hữu cơ</h3><p>Lá xanh đậm, vị đắng nhẹ, luộc hay xào tỏi đều ngon.</p>
+          <div class="foot"><span class="price">35.000₫ <small>/ bó 500g</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Rau cải mèo hữu cơ">+</button></div></div>
+      </article>
+      <article class="product reveal" data-cat="rau">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600&q=80&auto=format&fit=crop" alt="Cà chua chín cây" onerror="this.remove()"><span class="tag">Bán chạy</span></div>
+        <div class="body"><span class="origin">📍 Đà Lạt · Chị Lan</span><h3>Cà chua beef chín cây</h3><p>Thịt dày, ít hạt, ngọt thanh. Hái khi chín đỏ trên cây.</p>
+          <div class="foot"><span class="price">52.000₫ <small>/ kg</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Cà chua beef chín cây">+</button></div></div>
+      </article>
+      <article class="product reveal" data-cat="qua">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&q=80&auto=format&fit=crop" alt="Trái cây tươi theo mùa" onerror="this.remove()"></div>
+        <div class="body"><span class="origin">📍 Đà Lạt · Anh Tuấn</span><h3>Hộp trái cây theo mùa</h3><p>Bơ sáp, dâu tây, hồng giòn — tuỳ mùa thu hoạch.</p>
+          <div class="foot"><span class="price">289.000₫ <small>/ hộp 3kg</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Hộp trái cây theo mùa">+</button></div></div>
+      </article>
+      <article class="product reveal" data-cat="gao">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80&auto=format&fit=crop" alt="Gạo ST25" onerror="this.remove()"><span class="tag">Đặc sản</span></div>
+        <div class="body"><span class="origin">📍 Đồng Tháp · HTX Tháp Mười</span><h3>Gạo ST25 ruộng tôm</h3><p>Hạt dài, thơm lá dứa, cơm dẻo và vẫn mềm khi nguội.</p>
+          <div class="foot"><span class="price">42.000₫ <small>/ kg</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Gạo ST25 ruộng tôm">+</button></div></div>
+      </article>
+      <article class="product reveal" data-cat="rau">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&q=80&auto=format&fit=crop" alt="Giỏ rau củ tổng hợp" onerror="this.remove()"></div>
+        <div class="body"><span class="origin">📍 3 vùng trồng</span><h3>Giỏ rau củ gia đình</h3><p>8–10 loại rau củ đủ cho 4 người ăn trong 3 ngày.</p>
+          <div class="foot"><span class="price">199.000₫ <small>/ giỏ</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Giỏ rau củ gia đình">+</button></div></div>
+      </article>
+      <article class="product reveal" data-cat="qua">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&q=80&auto=format&fit=crop" alt="Xoài cát Hoà Lộc" onerror="this.remove()"></div>
+        <div class="body"><span class="origin">📍 Đồng Tháp · Chú Sáu</span><h3>Xoài cát Hoà Lộc</h3><p>Thịt vàng, mịn, thơm ngọt đậm. Trái loại 1 từ 450g.</p>
+          <div class="foot"><span class="price">95.000₫ <small>/ kg</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Xoài cát Hoà Lộc">+</button></div></div>
+      </article>
+      <article class="product reveal" data-cat="dacsan">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600&q=80&auto=format&fit=crop" alt="Chè Shan tuyết" onerror="this.remove()"></div>
+        <div class="body"><span class="origin">📍 Mộc Châu · Bản Áng</span><h3>Chè Shan tuyết cổ thụ</h3><p>Búp chè từ cây trên 100 tuổi, sao tay trên chảo gang.</p>
+          <div class="foot"><span class="price">320.000₫ <small>/ 200g</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Chè Shan tuyết cổ thụ">+</button></div></div>
+      </article>
+      <article class="product reveal" data-cat="dacsan">
+        <div class="ph"><svg><use href="#produce"/></svg><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80&auto=format&fit=crop" alt="Mật ong hoa nhãn" onerror="this.remove()"></div>
+        <div class="body"><span class="origin">📍 Mộc Châu · Anh Khoa</span><h3>Mật ong hoa rừng</h3><p>Mật nguyên chất, không pha đường, kết tinh tự nhiên.</p>
+          <div class="foot"><span class="price">185.000₫ <small>/ 500ml</small></span><button class="add" aria-label="Thêm vào giỏ" data-name="Mật ong hoa rừng">+</button></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="journey" id="hanh-trinh">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">Hành trình của một bó rau</span>
+    <h2 class="title">Từ hạt giống đến bàn ăn trong 5 bước</h2>
+    <div class="steps">
+      <div class="step reveal"><div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20V10"/><path d="M12 10c0-3 2-6 6-6 0 4-2 6-6 6Z"/><path d="M12 13c0-2.5-2-4.5-5-4.5 0 3 2 5 5 4.5Z"/></svg></div><small>BƯỚC 01</small><h4>Gieo trồng</h4><p>Giống bản địa, đất được nghỉ và cải tạo bằng phân hữu cơ.</p></div>
+      <div class="step reveal"><div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7C9 6.5 6 9.6 6 13a6 6 0 0 0 12 0c0-3.4-3-6.5-6-10.3Z"/></svg></div><small>BƯỚC 02</small><h4>Chăm sóc</h4><p>Tưới nước suối, bắt sâu thủ công, ghi nhật ký canh tác.</p></div>
+      <div class="step reveal"><div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div><small>BƯỚC 03</small><h4>Thu hoạch</h4><p>Hái lúc sáng sớm, chỉ thu khi đủ ngày, đủ độ chín.</p></div>
+      <div class="step reveal"><div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21 8-9-5-9 5v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></div><small>BƯỚC 04</small><h4>Đóng gói</h4><p>Sơ chế, dán mã QR, đóng hộp giấy phân huỷ sinh học.</p></div>
+      <div class="step reveal"><div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7Z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><small>BƯỚC 05</small><h4>Giao tận nhà</h4><p>Xe lạnh vận chuyển, đến tay bạn trong vòng 24 giờ.</p></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><b>60+</b><span>nông hộ liên kết</span></div>
+      <div class="stat reveal"><b>3</b><span>vùng trồng chuyên canh</span></div>
+      <div class="stat reveal"><b>18.000+</b><span>gia đình tin dùng</span></div>
+      <div class="stat reveal"><b>24h</b><span>từ ruộng đến bàn ăn</span></div>
+    </div>
+    <div class="certs"><span>VietGAP</span><span>GlobalGAP</span><span>OCOP 4★</span><span>Hữu cơ PGS</span><span>HACCP</span></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Khách hàng nói gì</span>
+    <h2 class="title">Bữa cơm nhà ngon hơn mỗi ngày</h2>
+    <div class="reviews">
+      <div class="review reveal"><div class="stars">★★★★★</div><q>Rau cải mèo giòn và ngọt đúng vị hồi nhỏ ăn ở quê. Quét mã QR còn thấy cả ảnh bác Páo đang hái rau, rất yên tâm.</q><div class="who"><div class="avatar" style="background:#7fb069">H</div><div><b>Chị Thu Hà</b><span>Cầu Giấy, Hà Nội</span></div></div></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><q>Đặt giỏ rau gia đình hằng tuần đã hơn một năm. Giao đúng giờ, rau để tủ lạnh cả tuần vẫn tươi.</q><div class="who"><div class="avatar" style="background:#e9a23b">M</div><div><b>Anh Quốc Minh</b><span>Quận 7, TP.HCM</span></div></div></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><q>Gạo ST25 thơm, cơm dẻo, các con ăn rất thích. Mua tận gốc nên giá cũng hợp lý hơn siêu thị.</q><div class="who"><div class="avatar" style="background:#b5652d">L</div><div><b>Chị Ngọc Lan</b><span>Hải Châu, Đà Nẵng</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIPTION BOX -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="ph">
+        <svg><use href="#terraces"/></svg>
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80&auto=format&fit=crop" alt="Giỏ nông sản tươi" onerror="this.remove()">
+      </div>
+      <div class="content">
+        <span class="eyebrow" style="color:#fff">Gói thành viên</span>
+        <h2 style="margin-top:14px">Hộp nông sản theo mùa, giao tận nhà mỗi tuần</h2>
+        <ul>
+          <li>Rau củ, trái cây đúng mùa từ 3 vùng trồng</li>
+          <li>Tiết kiệm 15% so với mua lẻ</li>
+          <li>Tạm dừng hoặc huỷ bất cứ lúc nào</li>
+          <li>Tặng kèm thiệp kể chuyện người trồng</li>
+        </ul>
+        <p class="price">Chỉ từ <b>690.000₫</b> / tháng</p>
+        <a href="#lien-he" class="btn btn-light">Đăng ký gói thành viên</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section id="nhat-ky" style="padding-top:20px">
+  <div class="wrap">
+    <span class="eyebrow">Nhật ký nông trại</span>
+    <h2 class="title">Chuyện ở vùng trồng</h2>
+    <div class="posts">
+      <article class="post reveal"><div class="ph"><svg><use href="#terraces"/></svg><img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80&auto=format&fit=crop" alt="Mùa mận Mộc Châu" onerror="this.remove()"></div><small>Mộc Châu · 12/05</small><h3>Mùa mận hậu chín đỏ trên cao nguyên</h3><p>Những ngày tháng 5, cả bản Áng thức dậy từ 4 giờ sáng để kịp hái mận trước khi nắng lên…</p></article>
+      <article class="post reveal"><div class="ph"><svg><use href="#farmer"/></svg><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80&auto=format&fit=crop" alt="Ủ phân hữu cơ" onerror="this.remove()"></div><small>Kỹ thuật · 03/05</small><h3>Cách bác Páo ủ phân chuồng suốt 30 năm</h3><p>Không men vi sinh đóng gói, không phân hoá học. Chỉ có lá rừng, phân bò và thời gian…</p></article>
+      <article class="post reveal"><div class="ph"><svg><use href="#terraces"/></svg><img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80&auto=format&fit=crop" alt="Mùa nước nổi Đồng Tháp" onerror="this.remove()"></div><small>Đồng Tháp · 28/04</small><h3>Mùa nước nổi và hạt gạo ST25</h3><p>Lũ về mang theo phù sa. Với nông dân Tháp Mười, đó là món quà của sông Mê Kông…</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="lien-he">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#7fb069"/><path d="M20 30V18" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M20 18c0-5 3.5-8.5 9-8.5 0 6-3.5 9.5-9 8.5Z" fill="#fff"/><path d="M20 22c0-4-3-7-8-7 0 5 3 7.6 8 7Z" fill="#fff" opacity=".8"/></svg>Đất Lành</a>
+        <p style="margin-top:18px;max-width:320px">Nông sản sạch từ vùng trồng đến bữa cơm nhà bạn. Minh bạch nguồn gốc, công bằng với người nông dân.</p>
+      </div>
+      <div><h4>Cửa hàng</h4><ul><li><a href="#san-pham">Rau củ</a></li><li><a href="#san-pham">Trái cây</a></li><li><a href="#san-pham">Gạo & hạt</a></li><li><a href="#san-pham">Đặc sản vùng miền</a></li></ul></div>
+      <div><h4>Về chúng tôi</h4><ul><li><a href="#cau-chuyen">Câu chuyện</a></li><li><a href="#vung-trong">Vùng trồng</a></li><li><a href="#hanh-trinh">Quy trình</a></li><li><a href="#nhat-ky">Nhật ký nông trại</a></li></ul></div>
+      <div>
+        <h4>Nhận tin mùa vụ</h4>
+        <p style="font-size:15px">Biết trước sản phẩm sắp thu hoạch và ưu đãi dành cho thành viên.</p>
+        <form class="news" onsubmit="event.preventDefault();toast('Cảm ơn bạn đã đăng ký nhận tin!');this.reset()"><input type="email" placeholder="Email của bạn" required><button class="btn btn-primary" style="padding:11px 20px">Đăng ký</button></form>
+        <p style="font-size:14px;margin-top:20px">📞 1900 0000 · ✉️ xinchao@datlanh.vn</p>
+      </div>
+    </div>
+    <div class="copy"><span>© 2026 Đất Lành Farm. Mọi quyền được bảo lưu.</span><span>Thiết kế bởi Vexim Harvest</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+document.documentElement.classList.add('js');
+
+// Header đổi nền khi cuộn
+const header = document.getElementById('top');
+const onScroll = () => header.classList.toggle('solid', window.scrollY > 40);
+onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+// Menu mobile
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('menu').classList.toggle('open');
+  header.classList.add('solid');
+});
+document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => document.getElementById('menu').classList.remove('open')));
+
+// Lọc sản phẩm
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+  const f = tab.dataset.filter;
+  document.querySelectorAll('.product').forEach(p => { p.hidden = f !== 'all' && p.dataset.cat !== f; });
+}));
+
+// Giỏ hàng (demo)
+let count = 0;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 2200);
+}
+document.querySelectorAll('.add').forEach(btn => btn.addEventListener('click', () => {
+  document.getElementById('cartCount').textContent = ++count;
+  toast('Đã thêm “' + btn.dataset.name + '” vào giỏ');
+}));
+
+// Hiệu ứng xuất hiện khi cuộn.
+// Trình duyệt tự động (công cụ chụp thumbnail) hoặc không hỗ trợ: hiện tất cả ngay.
+const reveals = document.querySelectorAll('.reveal');
+if (navigator.webdriver || !('IntersectionObserver' in window)) {
+  reveals.forEach(el => el.classList.add('in'));
+} else {
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  reveals.forEach(el => io.observe(el));
+}
+</script>
+</body>
+</html>

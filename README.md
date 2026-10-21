@@ -40,7 +40,7 @@ npm install
 npm run dev
 ```
 - Để chụp thumbnail khi chạy local, đặt `CHROME_EXECUTABLE_PATH` trỏ tới Chrome trên máy.
-- Seed 4 giao diện mẫu trong `samples/`: `npm run seed`.
+- Seed các giao diện mẫu trong `samples/`: `npm run seed`, hoặc bấm "Nhập giao diện mẫu" trong `/admin`.
 - Đăng ký tài khoản bằng email có trong `ADMIN_EMAILS`, sau đó vào `/admin`.
 
 ### 4. Thanh toán tự động (SePay)
@@ -70,7 +70,7 @@ src/app/
   api/admin/*              CRUD giao diện, thumbnail, upload zip, xác nhận đơn
 src/lib/                   Supabase clients, auth, screenshot, payment...
 supabase/schema.sql        Database schema
-samples/                   4 giao diện mẫu + catalog.json cho seed
+samples/                   Giao diện mẫu + catalog.json cho seed
 ```
 
 ## Lưu ý khi dán HTML

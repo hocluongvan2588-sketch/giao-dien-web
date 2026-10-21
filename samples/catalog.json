@@ -1,5 +1,21 @@
 [
   {
+    "file": "dat-lanh-farm-thuc-pham-sach.html",
+    "name": "Đất Lành Farm — Thực phẩm sạch có câu chuyện",
+    "slug": "dat-lanh-farm-thuc-pham-sach",
+    "category": "thuc-pham",
+    "short_description": "Website bán thực phẩm sạch kể chuyện người nông dân và vùng trồng, có lọc sản phẩm và giỏ hàng.",
+    "description": "Giao diện bán nông sản/thực phẩm theo phong cách kể chuyện thương hiệu.\n\n• Hero toàn màn hình ảnh vùng trồng + trích dẫn của người nông dân\n• Câu chuyện thương hiệu, nhà sáng lập\n• 3 vùng trồng (Mộc Châu, Đà Lạt, Đồng Tháp) với độ cao, khí hậu, số nông hộ\n• Cửa hàng 8 sản phẩm, lọc theo danh mục, nút thêm vào giỏ\n• Hành trình 5 bước từ hạt giống đến bàn ăn, số liệu, chứng nhận\n• Đánh giá khách hàng, gói thành viên, nhật ký nông trại\n• Responsive, menu mobile, hiệu ứng xuất hiện khi cuộn\n• Ảnh có minh hoạ dự phòng nếu link ảnh lỗi",
+    "price": 1490000,
+    "sale_price": 1190000,
+    "tags": [
+      "thực phẩm sạch",
+      "câu chuyện thương hiệu",
+      "cửa hàng"
+    ],
+    "is_featured": true
+  },
+  {
     "file": "agrifresh-nong-san-sach.html",
     "name": "AgriFresh — Nông sản sạch",
     "slug": "agrifresh-nong-san-sach",
@@ -8,7 +24,11 @@
     "description": "Giao diện một trang cho cửa hàng/nông trại nông sản sạch.\n\n• Hero + số liệu nổi bật\n• Lưới 8 sản phẩm theo mùa\n• Giới thiệu nông trại, quy trình 4 bước\n• Chứng nhận VietGAP/GlobalGAP\n• Form đăng ký nhận hàng",
     "price": 1290000,
     "sale_price": 990000,
-    "tags": ["rau sạch", "VietGAP", "landing page"],
+    "tags": [
+      "rau sạch",
+      "VietGAP",
+      "landing page"
+    ],
     "is_featured": true
   },
   {
@@ -20,7 +40,11 @@
     "description": "Giao diện phong cách công nghiệp cho nhà máy sản xuất.\n\n• Hero tối, số liệu công suất\n• Danh mục sản phẩm chủ lực\n• Năng lực sản xuất, quy trình khép kín\n• Chứng nhận ISO/BRCGS/HALAL\n• Form yêu cầu báo giá",
     "price": 1890000,
     "sale_price": null,
-    "tags": ["nhà máy", "OEM", "B2B"],
+    "tags": [
+      "nhà máy",
+      "OEM",
+      "B2B"
+    ],
     "is_featured": false
   },
   {
@@ -32,7 +56,11 @@
     "description": "Giao diện tiếng Anh hướng tới khách hàng quốc tế.\n\n• Hero + thị trường xuất khẩu\n• Portfolio 8 mặt hàng\n• Quy trình xuất khẩu 4 bước\n• Chứng nhận quốc tế\n• Form Request a quote",
     "price": 2190000,
     "sale_price": 1690000,
-    "tags": ["export", "tiếng Anh", "B2B"],
+    "tags": [
+      "export",
+      "tiếng Anh",
+      "B2B"
+    ],
     "is_featured": true
   },
   {
@@ -44,7 +72,11 @@
     "description": "Giao diện cho thương hiệu cà phê/đồ uống.\n\n• Hero kể chuyện thương hiệu\n• Bộ sưu tập sản phẩm có giá\n• Câu chuyện nông trại\n• Từ hạt tới ly — quy trình\n• Form nhận ưu đãi",
     "price": 990000,
     "sale_price": null,
-    "tags": ["cà phê", "thương hiệu", "bán lẻ"],
+    "tags": [
+      "cà phê",
+      "thương hiệu",
+      "bán lẻ"
+    ],
     "is_featured": false
   }
 ]
