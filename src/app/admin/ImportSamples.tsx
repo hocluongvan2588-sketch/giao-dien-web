@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { CaptureProgress, type CaptureState } from "./CaptureProgress";
 
 export function ImportSamples() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [capture, setCapture] = useState<CaptureState | null>(null);
 
   async function run() {
     setBusy(true);
@@ -20,10 +22,12 @@ export function ImportSamples() {
     const ids: string[] = data.created;
     let failed = 0;
     for (const [i, id] of ids.entries()) {
-      setMessage(`Đang chụp thumbnail ${i + 1}/${ids.length}…`);
+      setMessage(null);
+      setCapture({ mode: "capture", startedAt: Date.now(), phase: "running", subtitle: `Giao diện ${i + 1}/${ids.length}` });
       const r = await fetch(`/api/admin/templates/${id}/thumbnail`, { method: "POST" });
       if (!r.ok) failed++;
     }
+    setCapture(null);
     setBusy(false);
     setMessage(
       ids.length === 0
@@ -35,6 +39,7 @@ export function ImportSamples() {
 
   return (
     <div className="flex flex-wrap items-center gap-3">
+      {capture && <CaptureProgress state={capture} onClose={() => setCapture(null)} />}
       <button type="button" onClick={run} disabled={busy} className="btn-ghost">
         {busy ? "Đang xử lý…" : "Nhập giao diện mẫu"}
       </button>

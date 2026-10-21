@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { DevicePreview } from "@/components/DevicePreview";
 import { createClient } from "@/lib/supabase/client";
 import { CATEGORIES } from "@/lib/categories";
 import { slugify } from "@/lib/format";
 import type { Template } from "@/lib/types";
+import { CaptureProgress, type CaptureState } from "../CaptureProgress";
 
 type Status = { type: "info" | "error" | "ok"; text: string } | null;
 
@@ -32,6 +33,17 @@ export function TemplateForm({ initial }: { initial?: Template }) {
   const [thumb, setThumb] = useState(initial?.thumbnail_url ?? null);
   const [preview, setPreview] = useState(form.demo_html);
   const [busy, setBusy] = useState(false);
+  const [capture, setCapture] = useState<CaptureState | null>(null);
+  // id giao diện đang chụp (để "Thử lại") và trang cần chuyển tới sau khi đóng hộp tiến trình
+  const captureIdRef = useRef<string | null>(null);
+  const redirectRef = useRef<string | null>(null);
+  const closeCapture = useCallback(() => {
+    setCapture(null);
+    if (redirectRef.current) {
+      router.replace(redirectRef.current);
+      redirectRef.current = null;
+    }
+  }, [router]);
   const [status, setStatus] = useState<Status>(null);
   const htmlFileRef = useRef<HTMLInputElement>(null);
 
@@ -67,7 +79,9 @@ export function TemplateForm({ initial }: { initial?: Template }) {
   }
 
   async function regenerateThumbnail(id: string, file?: File) {
-    setStatus({ type: "info", text: file ? "Đang tải ảnh lên…" : "Đang chụp ảnh thumbnail tự động (10–30 giây)…" });
+    setStatus(null);
+    captureIdRef.current = id;
+    setCapture({ mode: file ? "upload" : "capture", startedAt: Date.now(), phase: "running" });
     let body: FormData | undefined;
     if (file) {
       body = new FormData();
@@ -76,10 +90,13 @@ export function TemplateForm({ initial }: { initial?: Template }) {
     const res = await fetch(`/api/admin/templates/${id}/thumbnail`, { method: "POST", body });
     const data = await res.json().catch(() => ({ error: "Lỗi không xác định" }));
     if (!res.ok) {
-      setStatus({ type: "error", text: `${data.error}. Bạn có thể tải ảnh lên thủ công.` });
+      const error = `${data.error}. Bạn có thể thử lại hoặc tải ảnh lên thủ công.`;
+      setCapture((c) => c && { ...c, phase: "error", error, finishedAt: Date.now() });
+      setStatus({ type: "error", text: error });
       return false;
     }
     setThumb(data.thumbnail_url);
+    setCapture((c) => c && { ...c, phase: "done", thumbnailUrl: data.thumbnail_url, finishedAt: Date.now() });
     setStatus({ type: "ok", text: "Đã cập nhật thumbnail." });
     return true;
   }
@@ -110,7 +127,12 @@ export function TemplateForm({ initial }: { initial?: Template }) {
     const thumbOk = htmlChanged ? await regenerateThumbnail(data.id) : true;
     setBusy(false);
     if (thumbOk) setStatus({ type: "ok", text: "Đã lưu giao diện." });
-    if (!isEdit) router.replace(`/admin/templates/${data.id}`);
+    if (!isEdit) {
+      // Chuyển sang trang sửa sau khi người dùng xem xong kết quả chụp
+      const target = `/admin/templates/${data.id}`;
+      if (htmlChanged) redirectRef.current = target;
+      else router.replace(target);
+    }
     router.refresh();
   }
 
@@ -129,6 +151,18 @@ export function TemplateForm({ initial }: { initial?: Template }) {
 
   return (
     <form onSubmit={save} className="grid gap-6 xl:grid-cols-[1fr_380px]">
+      {capture && (
+        <CaptureProgress
+          state={capture}
+          onClose={closeCapture}
+          onRetry={async () => {
+            if (!captureIdRef.current) return;
+            setBusy(true);
+            await regenerateThumbnail(captureIdRef.current);
+            setBusy(false);
+          }}
+        />
+      )}
       <div className="min-w-0 space-y-6">
         <section className="card p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
