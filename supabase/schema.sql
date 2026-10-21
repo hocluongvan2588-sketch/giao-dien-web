@@ -16,6 +16,7 @@ create table if not exists public.templates (
   status            text not null default 'draft' check (status in ('draft', 'published')),
   demo_html         text not null,
   source_path       text,            -- đường dẫn file giao cho khách trong bucket "sources"
+  demo_base_url     text,            -- thư mục CSS/JS/ảnh trong bucket "demos" khi nhập từ gói ZIP
   thumbnail_url     text,            -- ảnh chụp toàn trang (bucket "thumbnails", public)
   sales_count       integer not null default 0,
   created_at        timestamptz not null default now(),
@@ -80,3 +81,9 @@ on conflict (id) do nothing;
 insert into storage.buckets (id, name, public)
 values ('sources', 'sources', false)
 on conflict (id) do nothing;
+
+-- File giải nén từ gói ZIP để chạy demo (CSS, JS, ảnh, font, các trang HTML)
+insert into storage.buckets (id, name, public)
+values ('demos', 'demos', true)
+on conflict (id) do nothing;
+

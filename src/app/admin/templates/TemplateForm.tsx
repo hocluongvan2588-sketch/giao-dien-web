@@ -7,7 +7,17 @@ import { createClient } from "@/lib/supabase/client";
 import { CATEGORIES } from "@/lib/categories";
 import { slugify } from "@/lib/format";
 import type { Template } from "@/lib/types";
+import { prepareDemoHtml } from "@/lib/demo";
+import { FileArchive, Loader2 } from "lucide-react";
 import { CaptureProgress, type CaptureState } from "../CaptureProgress";
+
+type Package = {
+  name: string;
+  root: string;
+  fileCount: number;
+  totalBytes: number;
+  htmlFiles: { path: string; html: string }[];
+};
 
 type Status = { type: "info" | "error" | "ok"; text: string } | null;
 
@@ -30,6 +40,11 @@ export function TemplateForm({ initial }: { initial?: Template }) {
   const [slugTouched, setSlugTouched] = useState(isEdit);
   const [sourcePath, setSourcePath] = useState<string | null>(initial?.source_path ?? null);
   const [zipName, setZipName] = useState<string | null>(null);
+  // Gói ZIP chạy demo: thư mục public chứa CSS/JS/ảnh và danh sách trang HTML trong gói
+  const [demoBase, setDemoBase] = useState<string | null>(initial?.demo_base_url ?? null);
+  const [pkg, setPkg] = useState<Package | null>(null);
+  const [entry, setEntry] = useState<string | null>(null);
+  const [pkgStep, setPkgStep] = useState<string | null>(null);
   const [thumb, setThumb] = useState(initial?.thumbnail_url ?? null);
   const [preview, setPreview] = useState(form.demo_html);
   const [busy, setBusy] = useState(false);
@@ -62,20 +77,76 @@ export function TemplateForm({ initial }: { initial?: Template }) {
     if (!form.name) set("name", file.name.replace(/\.html?$/i, "").replace(/[-_]/g, " "));
   }
 
-  async function uploadZip(file: File) {
-    setStatus({ type: "info", text: "Đang tải file ZIP lên…" });
+  /** Upload file ZIP thẳng lên Storage (bucket "sources"), trả về đường dẫn. */
+  async function uploadZipFile(file: File): Promise<string> {
     const res = await fetch("/api/admin/upload-url", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ filename: file.name }),
     });
     const data = await res.json();
-    if (!res.ok) return setStatus({ type: "error", text: data.error });
+    if (!res.ok) throw new Error(data.error);
     const { error } = await createClient().storage.from("sources").uploadToSignedUrl(data.path, data.token, file, { contentType: "application/zip" });
-    if (error) return setStatus({ type: "error", text: `Upload ZIP lỗi: ${error.message}` });
-    setSourcePath(data.path);
-    setZipName(file.name);
-    setStatus({ type: "ok", text: "Đã tải file ZIP. Nhớ bấm Lưu." });
+    if (error) throw new Error(`Upload ZIP lỗi: ${error.message}`);
+    return data.path;
+  }
+
+  async function uploadZip(file: File) {
+    setStatus({ type: "info", text: "Đang tải file ZIP lên…" });
+    try {
+      setSourcePath(await uploadZipFile(file));
+      setZipName(file.name);
+      setStatus({ type: "ok", text: "Đã tải file ZIP. Nhớ bấm Lưu." });
+    } catch (e) {
+      setStatus({ type: "error", text: (e as Error).message });
+    }
+  }
+
+  function applyEntry(p: Package, path: string) {
+    const file = p.htmlFiles.find((f) => f.path === path);
+    if (!file) return;
+    const dir = path.includes("/") ? path.slice(0, path.lastIndexOf("/") + 1) : "";
+    setEntry(path);
+    setDemoBase(p.root + dir);
+    setForm((f) => ({ ...f, demo_html: file.html }));
+  }
+
+  /** Nhập giao diện nhiều file: upload ZIP, giải nén trên máy chủ, lấy trang chủ làm HTML demo. */
+  async function importPackage(file: File) {
+    if (file.size > 50 * 1024 * 1024) return setStatus({ type: "error", text: "File ZIP tối đa 50MB" });
+    setStatus(null);
+    setBusy(true);
+    try {
+      setPkgStep(`Đang tải ${file.name} lên (${(file.size / 1024 / 1024).toFixed(1)} MB)…`);
+      const path = await uploadZipFile(file);
+      setPkgStep("Đang giải nén và đưa CSS, JS, ảnh lên máy chủ…");
+      const res = await fetch("/api/admin/package", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ zipPath: path }),
+      });
+      const data = await res.json().catch(() => ({ error: "Máy chủ không phản hồi, có thể gói quá lớn" }));
+      if (!res.ok) throw new Error(data.error);
+      const p = { ...(data as Omit<Package, "name">), name: file.name };
+      setPkg(p);
+      applyEntry(p, p.htmlFiles[0].path);
+      // Khách mua sẽ nhận nguyên gói ZIP
+      setSourcePath(path);
+      setZipName(file.name);
+      if (!form.name) set("name", file.name.replace(/\.zip$/i, "").replace(/[-_]+/g, " "));
+      setStatus({ type: "ok", text: `Đã giải nén ${p.fileCount} file. Kiểm tra bản xem trước rồi bấm Lưu.` });
+    } catch (e) {
+      setStatus({ type: "error", text: (e as Error).message });
+    } finally {
+      setPkgStep(null);
+      setBusy(false);
+    }
+  }
+
+  function dropPackage() {
+    setPkg(null);
+    setEntry(null);
+    setDemoBase(null);
   }
 
   async function regenerateThumbnail(id: string, file?: File) {
@@ -111,6 +182,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
       price: Number(form.price),
       tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
       source_path: sourcePath,
+      demo_base_url: demoBase,
     };
     const res = await fetch(isEdit ? `/api/admin/templates/${initial!.id}` : "/api/admin/templates", {
       method: isEdit ? "PATCH" : "POST",
@@ -123,7 +195,8 @@ export function TemplateForm({ initial }: { initial?: Template }) {
       return setStatus({ type: "error", text: data.error });
     }
 
-    const htmlChanged = !isEdit || initial!.demo_html !== form.demo_html || !thumb;
+    const htmlChanged =
+      !isEdit || initial!.demo_html !== form.demo_html || (initial!.demo_base_url ?? null) !== demoBase || !thumb;
     const thumbOk = htmlChanged ? await regenerateThumbnail(data.id) : true;
     setBusy(false);
     if (thumbOk) setStatus({ type: "ok", text: "Đã lưu giao diện." });
@@ -175,6 +248,47 @@ export function TemplateForm({ initial }: { initial?: Template }) {
               <input ref={htmlFileRef} type="file" accept=".html,.htm,text/html" hidden onChange={(e) => e.target.files?.[0] && loadHtmlFile(e.target.files[0])} />
             </div>
           </div>
+          <div className="mt-3 rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4">
+            {pkgStep ? (
+              <p className="flex items-center gap-2 text-sm text-zinc-700"><Loader2 className="h-4 w-4 animate-spin text-brand-600" /> {pkgStep}</p>
+            ) : demoBase ? (
+              <div className="flex flex-wrap items-center gap-3 text-sm">
+                <FileArchive className="h-5 w-5 shrink-0 text-brand-600" />
+                <div className="min-w-0 flex-1">
+                  <p className="font-medium text-ink">{pkg ? pkg.name : "Đang dùng gói ZIP"}</p>
+                  <p className="text-xs text-zinc-500">
+                    {pkg
+                      ? `${pkg.fileCount} file · ${(pkg.totalBytes / 1024 / 1024).toFixed(1)} MB · CSS, JS và ảnh lấy từ gói`
+                      : "CSS, JS và ảnh lấy từ thư mục đã giải nén"}
+                  </p>
+                </div>
+                {pkg && pkg.htmlFiles.length > 1 && (
+                  <label className="flex items-center gap-2 text-xs text-zinc-600">
+                    Trang chủ demo
+                    <select className="input w-auto py-1.5 text-xs" value={entry ?? ""} onChange={(e) => applyEntry(pkg, e.target.value)}>
+                      {pkg.htmlFiles.map((f) => <option key={f.path} value={f.path}>{f.path}</option>)}
+                    </select>
+                  </label>
+                )}
+                <label className="btn-ghost cursor-pointer px-3 py-1.5 text-xs">
+                  Đổi gói khác
+                  <input type="file" accept=".zip,application/zip" hidden onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) importPackage(f); }} />
+                </label>
+                <button type="button" className="text-xs text-red-600 hover:underline" onClick={dropPackage}>Bỏ gói</button>
+              </div>
+            ) : (
+              <div className="flex flex-wrap items-center gap-3 text-sm">
+                <FileArchive className="h-5 w-5 shrink-0 text-zinc-400" />
+                <p className="min-w-0 flex-1 text-zinc-600">
+                  Giao diện có nhiều file (thư mục <code>css</code>, <code>js</code>, <code>images</code>)? Tải cả gói <b>.zip</b>, hệ thống tự giải nén để demo đầy đủ.
+                </p>
+                <label className={`btn-primary cursor-pointer px-4 py-2 text-xs ${busy ? "pointer-events-none opacity-60" : ""}`}>
+                  Tải gói ZIP
+                  <input type="file" accept=".zip,application/zip" hidden onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) importPackage(f); }} />
+                </label>
+              </div>
+            )}
+          </div>
           <textarea
             className="input mt-3 h-72 resize-y font-mono text-xs leading-relaxed"
             placeholder="<!DOCTYPE html>&#10;<html lang=&quot;vi&quot;>&#10;  ... dán toàn bộ mã HTML vào đây ...&#10;</html>"
@@ -184,14 +298,16 @@ export function TemplateForm({ initial }: { initial?: Template }) {
             required
           />
           <p className="mt-2 text-xs text-zinc-500">
-            Mẹo: CSS/JS nên để inline hoặc dùng link CDN; ảnh dùng URL tuyệt đối (https://…) để demo và thumbnail hiển thị đúng.
+            {demoBase
+              ? "Đây là mã HTML của trang chủ trong gói. Có thể sửa trực tiếp, đường dẫn tương đối (css/style.css, images/a.jpg) vẫn tải đúng từ gói."
+              : "Chỉ dán HTML thì CSS, JS, ảnh phải để inline hoặc dùng link https://. Giao diện có thư mục riêng thì dùng nút Tải gói ZIP ở trên."}
           </p>
         </section>
 
         <section>
           <h2 className="mb-3 font-bold">2. Xem trước</h2>
           {preview.trim() ? (
-            <DevicePreview srcDoc={preview} height={640} />
+            <DevicePreview srcDoc={prepareDemoHtml(preview, demoBase)} height={640} />
           ) : (
             <div className="card grid h-60 place-items-center text-sm text-zinc-500">Dán HTML để xem trước</div>
           )}
@@ -252,7 +368,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
         <section className="card space-y-3 p-5">
           <h2 className="font-bold">4. File giao cho khách</h2>
           <p className="text-xs text-zinc-600">
-            Mặc định khách nhận chính file HTML ở trên. Nếu giao diện có nhiều file (ảnh, CSS, JS), hãy tải lên gói .zip.
+            Mặc định khách nhận chính file HTML ở trên. Khi dùng nút Tải gói ZIP ở mục 1, khách nhận nguyên gói ZIP đó.
           </p>
           <p className="rounded-lg bg-brand-50 px-3 py-2 text-xs">
             Hiện tại: <b>{zipName ?? (sourcePath && !sourcePath.endsWith("/index.html") ? "Gói ZIP đã tải lên" : "File HTML")}</b>
@@ -262,7 +378,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
               Tải lên .zip
               <input type="file" accept=".zip,application/zip" hidden onChange={(e) => e.target.files?.[0] && uploadZip(e.target.files[0])} />
             </label>
-            {sourcePath && !sourcePath.endsWith("/index.html") && (
+            {sourcePath && !sourcePath.endsWith("/index.html") && !demoBase && (
               <button type="button" className="text-xs text-red-600 hover:underline" onClick={() => { setSourcePath(null); setZipName(null); }}>
                 Dùng file HTML
               </button>

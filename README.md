@@ -25,7 +25,8 @@ Next.js 15 (App Router) · TypeScript · Tailwind CSS · Supabase (Postgres, Aut
 
 ### 1. Supabase
 1. Tạo project tại [supabase.com](https://supabase.com).
-2. Vào **SQL Editor**, chạy toàn bộ file [`supabase/schema.sql`](supabase/schema.sql). File này tạo các bảng, RLS và 2 bucket `thumbnails` (public) và `sources` (private).
+2. Vào **SQL Editor**, chạy toàn bộ file [`supabase/schema.sql`](supabase/schema.sql). File này tạo các bảng, RLS và 3 bucket `thumbnails` (public), `sources` (private), `demos` (public).
+   - Nếu đã tạo database từ trước, chạy thêm các file trong [`supabase/migrations/`](supabase/migrations) theo thứ tự.
 3. Vào **Authentication → URL Configuration**: đặt Site URL là domain của bạn, thêm `https://<domain>/auth/callback` vào Redirect URLs.
 
 ### 2. Biến môi trường
@@ -60,7 +61,7 @@ npm run dev
 src/app/
   page.tsx                 Landing page
   templates/[slug]/        Trang chi tiết + mua
-  demo/[slug]/route.ts     Trả HTML demo (sandbox)
+  demo/[slug]/             Trả HTML demo (sandbox), kể cả các trang con của gói ZIP
   checkout/[orderId]/      VietQR + chờ thanh toán
   account/                 Đơn hàng & tải file
   admin/                   Quản trị giao diện, đơn hàng
@@ -70,10 +71,22 @@ src/app/
   api/admin/*              CRUD giao diện, thumbnail, upload zip, xác nhận đơn
 src/lib/                   Supabase clients, auth, screenshot, payment...
 supabase/schema.sql        Database schema
+supabase/migrations/       Thay đổi schema cho database đã tạo trước đó
 samples/                   Giao diện mẫu + catalog.json cho seed
 ```
 
-## Lưu ý khi dán HTML
+## Thêm giao diện vào /admin
 
-- CSS/JS nên để inline hoặc dùng link CDN. Ảnh dùng URL tuyệt đối (`https://...`) để demo và thumbnail hiển thị đúng.
+Có 2 cách đưa giao diện vào:
+
+1. **Dán HTML hoặc chọn file .html**: hợp với giao diện chỉ có một file. CSS/JS phải để inline hoặc dùng link CDN, ảnh dùng URL tuyệt đối (`https://...`).
+2. **Tải gói ZIP**: dùng cho giao diện nhiều file, gồm thư mục `css/`, `js/`, `images/`, `fonts/` và nhiều trang HTML.
+   - Hệ thống giải nén lên bucket `demos`, rồi chèn thẻ `<base>` để đường dẫn tương đối tải đúng.
+   - Link `#muc` vẫn cuộn trong trang. Link sang trang HTML khác mở qua `/demo/<slug>/<trang>.html`.
+   - Nếu gói có nhiều trang HTML, chọn trang chủ demo trong danh sách (ví dụ `index-7.html`).
+   - Khách mua nhận nguyên gói ZIP.
+   - Giới hạn: ZIP tối đa 50MB, sau giải nén tối đa 150MB và 3000 file. Bỏ qua `__MACOSX`, `.DS_Store` và file `.php`.
+
+## Lưu ý về mã nguồn demo
+
 - Khách vẫn xem được mã nguồn của bản demo qua view-source (website demo nào cũng vậy). Bản giao cho khách là bản sạch, không có nhãn demo. Nếu cần bảo vệ thêm, hãy dùng gói .zip có nội dung đầy đủ hơn bản demo.

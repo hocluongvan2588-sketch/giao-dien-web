@@ -14,6 +14,7 @@ export interface Template {
   status: TemplateStatus;
   demo_html: string;
   source_path: string | null;
+  demo_base_url: string | null;
   thumbnail_url: string | null;
   sales_count: number;
   created_at: string;
