@@ -10,8 +10,8 @@ import { CARD_COLUMNS, type TemplateCardData } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
-async function getTemplates(): Promise<TemplateCardData[]> {
-  if (!isSupabaseConfigured) return [];
+async function getTemplates(): Promise<{ templates: TemplateCardData[]; failed: boolean }> {
+  if (!isSupabaseConfigured) return { templates: [], failed: false };
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("templates")
@@ -19,7 +19,7 @@ async function getTemplates(): Promise<TemplateCardData[]> {
     .eq("status", "published")
     .order("created_at", { ascending: false });
   if (error) console.error("Load templates:", error.message);
-  return (data as TemplateCardData[] | null) ?? [];
+  return { templates: (data as TemplateCardData[] | null) ?? [], failed: Boolean(error) };
 }
 
 const FEATURES = [
@@ -46,7 +46,7 @@ const FAQ = [
 ];
 
 export default async function HomePage() {
-  const templates = await getTemplates();
+  const { templates, failed } = await getTemplates();
   const heroShots = templates.filter((t) => t.thumbnail_url).slice(0, 2);
 
   return (
@@ -121,6 +121,14 @@ export default async function HomePage() {
           {!isSupabaseConfigured ? (
             <div className="card p-8 text-sm text-brand-900/70">
               Chưa cấu hình Supabase. Hãy điền <code>.env.local</code> theo hướng dẫn trong README.
+            </div>
+          ) : failed ? (
+            <div className="card p-8 text-sm text-brand-900/70">
+              Chưa đọc được dữ liệu giao diện. Quản trị viên hãy kiểm tra đã chạy <code>supabase/schema.sql</code> trên Supabase chưa.
+            </div>
+          ) : templates.length === 0 ? (
+            <div className="card p-10 text-center text-sm text-brand-900/70">
+              Kho giao diện đang được cập nhật, vui lòng quay lại sau.
             </div>
           ) : (
             <Suspense>

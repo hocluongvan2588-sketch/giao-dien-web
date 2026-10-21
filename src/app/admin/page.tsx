@@ -2,10 +2,11 @@ import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { categoryLabel } from "@/lib/categories";
 import { effectivePrice, formatDate, formatVnd } from "@/lib/format";
+import { ImportSamples } from "./ImportSamples";
 
 export default async function AdminHome() {
   const db = createAdminClient();
-  const [{ data: templates }, { data: paid }] = await Promise.all([
+  const [{ data: templates, error }, { data: paid }] = await Promise.all([
     db
       .from("templates")
       .select("id, slug, name, category, price, sale_price, status, thumbnail_url, sales_count, updated_at")
@@ -21,6 +22,19 @@ export default async function AdminHome() {
     ["Doanh thu", formatVnd(revenue)],
   ];
 
+  if (error) {
+    return (
+      <div className="card border-red-200 p-6 text-sm">
+        <h1 className="text-lg font-bold text-red-700">Không đọc được bảng templates</h1>
+        <p className="mt-2 text-brand-900/80">Lỗi từ Supabase: <code>{error.message}</code></p>
+        <p className="mt-2 text-brand-900/80">
+          Nếu bạn chưa tạo bảng, hãy mở Supabase → SQL Editor và chạy toàn bộ file <code>supabase/schema.sql</code>.
+          Kiểm tra thêm biến <code>SUPABASE_SERVICE_ROLE_KEY</code> trên Vercel.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -32,7 +46,10 @@ export default async function AdminHome() {
         ))}
       </div>
 
-      <h1 className="mt-10 text-2xl font-extrabold">Danh sách giao diện</h1>
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-extrabold">Danh sách giao diện</h1>
+        <ImportSamples />
+      </div>
       {!templates?.length ? (
         <div className="card mt-6 p-12 text-center">
           <p className="text-brand-900/70">Chưa có giao diện nào.</p>
