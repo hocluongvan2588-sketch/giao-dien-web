@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { requireAdminApi } from "@/lib/auth";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { parseTemplateInput, storeHtmlSource } from "@/lib/templates-admin";
+import { parseTemplateInput, storeHtmlSource, toRow } from "@/lib/templates-admin";
+import { isMissingDemoColumn, MIGRATION_HINT } from "@/lib/demo";
 
 export async function POST(request: Request) {
   const auth = await requireAdminApi();
@@ -11,9 +12,9 @@ export async function POST(request: Request) {
   if (typeof input === "string") return NextResponse.json({ error: input }, { status: 400 });
 
   const db = createAdminClient();
-  const { data, error } = await db.from("templates").insert(input).select("id, slug").single();
+  const { data, error } = await db.from("templates").insert(toRow(input)).select("id, slug").single();
   if (error) {
-    const msg = error.code === "23505" ? "Slug đã tồn tại, hãy chọn slug khác" : error.message;
+    const msg = error.code === "23505" ? "Slug đã tồn tại, hãy chọn slug khác" : isMissingDemoColumn(error) ? MIGRATION_HINT : error.message;
     return NextResponse.json({ error: msg }, { status: 400 });
   }
 

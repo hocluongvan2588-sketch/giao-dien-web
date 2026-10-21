@@ -3,6 +3,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { CATEGORIES } from "@/lib/categories";
 import { slugify } from "@/lib/format";
 import { captureHtml } from "@/lib/screenshot";
+import { isMissingDemoColumn, isValidDemoBase, prepareDemoHtml } from "@/lib/demo";
 
 export interface TemplateInput {
   name: string;
@@ -18,6 +19,8 @@ export interface TemplateInput {
   demo_html: string;
   /** Đường dẫn file ZIP đã upload lên bucket "sources"; null = giao chính file HTML */
   source_path: string | null;
+  /** Thư mục public chứa CSS/JS/ảnh khi giao diện nhập từ gói ZIP */
+  demo_base_url: string | null;
 }
 
 /** Kiểm tra & chuẩn hoá dữ liệu form. Trả về chuỗi lỗi nếu không hợp lệ. */
@@ -38,6 +41,8 @@ export function parseTemplateInput(body: unknown): TemplateInput | string {
   if (sale !== null && (!Number.isInteger(sale) || sale < 0)) return "Giá khuyến mãi không hợp lệ";
   if (demo_html.trim().length < 20) return "Vui lòng dán mã HTML của giao diện";
   if (demo_html.length > 3_000_000) return "HTML quá lớn (tối đa ~3MB). Hãy đưa ảnh ra ngoài hoặc dùng file ZIP";
+  const demoBase = str(b.demo_base_url);
+  if (demoBase && !isValidDemoBase(demoBase)) return "Thư mục gói ZIP không hợp lệ, hãy tải lại gói";
 
   const sourcePath = str(b.source_path);
   return {
@@ -53,7 +58,17 @@ export function parseTemplateInput(body: unknown): TemplateInput | string {
     status: b.status === "published" ? "published" : "draft",
     demo_html,
     source_path: sourcePath && !sourcePath.endsWith("/index.html") ? sourcePath : null,
+    demo_base_url: demoBase || null,
   };
+}
+
+/**
+ * Bỏ cột demo_base_url khỏi dữ liệu ghi khi không dùng gói ZIP,
+ * để database chưa chạy migration 002 vẫn lưu được giao diện HTML thường.
+ */
+export function toRow(input: TemplateInput) {
+  const { demo_base_url, ...rest } = input;
+  return demo_base_url ? input : rest;
 }
 
 /** Khi không có file ZIP, giao chính HTML (bản không gắn nhãn demo) cho khách. */
@@ -72,9 +87,11 @@ export async function updateThumbnail(templateId: string, image?: { data: Buffer
   const db = createAdminClient();
   let file = image;
   if (!file) {
-    const { data: t, error } = await db.from("templates").select("demo_html").eq("id", templateId).single();
+    let { data: t, error } = await db.from("templates").select("demo_html, demo_base_url").eq("id", templateId).single();
+    if (isMissingDemoColumn(error)) ({ data: t, error } = await db.from("templates").select("demo_html").eq("id", templateId).single());
     if (error || !t) throw new Error("Không tìm thấy giao diện");
-    file = { data: await captureHtml(t.demo_html), contentType: "image/jpeg" };
+    const row = t as { demo_html: string; demo_base_url?: string | null };
+    file = { data: await captureHtml(prepareDemoHtml(row.demo_html, row.demo_base_url)), contentType: "image/jpeg" };
   }
 
   const ext = file.contentType === "image/png" ? "png" : file.contentType === "image/webp" ? "webp" : "jpg";

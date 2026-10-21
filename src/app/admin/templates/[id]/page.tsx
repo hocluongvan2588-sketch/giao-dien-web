@@ -9,7 +9,7 @@ export default async function EditTemplatePage({ params }: { params: Promise<{ i
   if (!data) notFound();
   return (
     <div>
-      <h1 className="text-2xl font-extrabold">Sửa: {data.name}</h1>
+      <h1 className="text-2xl font-bold">Sửa: {data.name}</h1>
       <div className="mt-6"><TemplateForm initial={data as Template} /></div>
     </div>
   );

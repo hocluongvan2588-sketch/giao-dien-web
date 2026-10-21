@@ -47,7 +47,7 @@ export async function captureHtml(html: string): Promise<Buffer> {
     const height = Math.min(Math.max(fullHeight, VIEWPORT.height), MAX_HEIGHT);
     const shot = await page.screenshot({
       type: "jpeg",
-      quality: 72,
+      quality: 82,
       clip: { x: 0, y: 0, width: VIEWPORT.width, height },
       captureBeyondViewport: true,
     });

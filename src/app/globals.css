@@ -7,7 +7,13 @@
 }
 
 body {
-  @apply bg-[#fbfaf6] text-brand-950 antialiased;
+  @apply bg-white text-ink antialiased;
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  @apply bg-brand-200 text-ink;
 }
 
 @layer components {
@@ -15,22 +21,37 @@ body {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-60;
   }
   .btn-primary {
-    @apply btn bg-brand-700 text-white hover:bg-brand-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600;
+    @apply btn bg-ink text-white shadow-sm hover:bg-ink-soft active:scale-[.98];
+  }
+  .btn-accent {
+    @apply btn bg-brand-600 text-white shadow-sm hover:bg-brand-700 active:scale-[.98];
   }
   .btn-ghost {
-    @apply btn border border-brand-200 bg-white text-brand-800 hover:border-brand-400 hover:bg-brand-50;
+    @apply btn border border-zinc-200 bg-white text-ink hover:border-zinc-300 hover:bg-zinc-50 active:scale-[.98];
   }
   .input {
-    @apply w-full rounded-xl border border-brand-200 bg-white px-3.5 py-2.5 text-sm outline-none transition placeholder:text-brand-900/40 focus:border-brand-500 focus:ring-4 focus:ring-brand-100;
+    @apply w-full rounded-xl border border-zinc-200 bg-white px-3.5 py-2.5 text-sm outline-none transition placeholder:text-zinc-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15;
   }
   .label {
-    @apply mb-1.5 block text-sm font-medium text-brand-900;
+    @apply mb-1.5 block text-sm font-medium text-ink;
   }
   .card {
-    @apply rounded-2xl border border-brand-100 bg-white shadow-card;
+    @apply rounded-2xl border border-zinc-200/80 bg-white shadow-card;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[.14em] text-brand-700;
+  }
+  .h-section {
+    @apply text-3xl font-semibold tracking-[-.03em] text-ink sm:text-[2.6rem] sm:leading-[1.1];
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(11, 18, 16, .05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 18, 16, .05) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 }
 
@@ -39,12 +60,13 @@ body {
   background-size: 100% auto;
   background-position: top center;
   background-repeat: no-repeat;
-  transition: background-position 5s ease-in-out;
+  transition: background-position 6s cubic-bezier(.45, 0, .25, 1);
 }
 .group:hover .thumb-scroll,
-.group:focus-visible .thumb-scroll {
+.group:focus-within .thumb-scroll {
   background-position: bottom center;
 }
 @media (prefers-reduced-motion: reduce) {
   .thumb-scroll { transition: none; }
+  .animate-fade-up { animation: none; }
 }

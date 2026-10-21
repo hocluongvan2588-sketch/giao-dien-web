@@ -2,17 +2,25 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { getCurrentUser, isAdminEmail } from "@/lib/auth";
 
+const NAV = [
+  ["/#giao-dien", "Giao diện"],
+  ["/#tinh-nang", "Tính năng"],
+  ["/#quy-trinh", "Quy trình mua"],
+  ["/#faq", "Hỏi đáp"],
+] as const;
+
 export async function SiteHeader() {
   const user = await getCurrentUser();
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-100/70 bg-[#fbfaf6]/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-zinc-200/70 bg-white/75 backdrop-blur-xl backdrop-saturate-150">
       <div className="container-x flex h-16 items-center justify-between gap-4">
         <Logo />
-        <nav className="hidden items-center gap-7 text-sm font-medium text-brand-800 md:flex">
-          <Link href="/#giao-dien" className="hover:text-brand-600">Giao diện</Link>
-          <Link href="/#quy-trinh" className="hover:text-brand-600">Quy trình mua</Link>
-          <Link href="/#faq" className="hover:text-brand-600">Hỏi đáp</Link>
-          <Link href="/#lien-he" className="hover:text-brand-600">Liên hệ</Link>
+        <nav className="hidden items-center gap-1 text-sm text-zinc-600 md:flex">
+          {NAV.map(([href, label]) => (
+            <Link key={href} href={href} className="rounded-full px-3.5 py-2 transition hover:bg-zinc-100 hover:text-ink">
+              {label}
+            </Link>
+          ))}
         </nav>
         <div className="flex items-center gap-2">
           {user ? (
@@ -24,7 +32,9 @@ export async function SiteHeader() {
             </>
           ) : (
             <>
-              <Link href="/login" className="btn-ghost hidden sm:inline-flex">Đăng nhập</Link>
+              <Link href="/login" className="hidden rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 sm:inline-flex">
+                Đăng nhập
+              </Link>
               <Link href="/#giao-dien" className="btn-primary">Xem giao diện</Link>
             </>
           )}

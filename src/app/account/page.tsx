@@ -31,8 +31,8 @@ export default async function AccountPage() {
       <main className="container-x py-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight">Đơn hàng của tôi</h1>
-            <p className="mt-1 text-sm text-brand-900/60">{user.email}</p>
+            <h1 className="text-3xl font-bold tracking-tight">Đơn hàng của tôi</h1>
+            <p className="mt-1 text-sm text-zinc-600">{user.email}</p>
           </div>
           <form action="/auth/signout" method="post">
             <button className="btn-ghost">Đăng xuất</button>
@@ -41,7 +41,7 @@ export default async function AccountPage() {
 
         {!orders?.length ? (
           <div className="card mt-8 p-12 text-center">
-            <p className="text-brand-900/70">Bạn chưa có đơn hàng nào.</p>
+            <p className="text-zinc-600">Bạn chưa có đơn hàng nào.</p>
             <Link href="/#giao-dien" className="btn-primary mt-5">Khám phá giao diện</Link>
           </div>
         ) : (
@@ -54,7 +54,7 @@ export default async function AccountPage() {
                   <div className="aspect-[4/3] w-full shrink-0 rounded-xl bg-brand-50 bg-cover bg-top sm:w-32" style={t.thumbnail_url ? { backgroundImage: `url("${t.thumbnail_url}")` } : undefined} />
                   <div className="min-w-0 flex-1">
                     <Link href={`/templates/${t.slug}`} className="font-bold hover:text-brand-600">{t.name}</Link>
-                    <p className="mt-1 text-sm text-brand-900/60">
+                    <p className="mt-1 text-sm text-zinc-600">
                       Mã đơn <span className="font-mono">{o.code}</span> · {formatDate(o.created_at)} · {formatVnd(o.amount)}
                     </p>
                     <span className={`mt-2 inline-block rounded-full px-2.5 py-1 text-xs font-semibold ${s.cls}`}>{s.label}</span>
