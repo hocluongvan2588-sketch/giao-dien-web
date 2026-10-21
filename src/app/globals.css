@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-[#fbfaf6] text-brand-950 antialiased;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-brand-700 text-white hover:bg-brand-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600;
+  }
+  .btn-ghost {
+    @apply btn border border-brand-200 bg-white text-brand-800 hover:border-brand-400 hover:bg-brand-50;
+  }
+  .input {
+    @apply w-full rounded-xl border border-brand-200 bg-white px-3.5 py-2.5 text-sm outline-none transition placeholder:text-brand-900/40 focus:border-brand-500 focus:ring-4 focus:ring-brand-100;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-brand-900;
+  }
+  .card {
+    @apply rounded-2xl border border-brand-100 bg-white shadow-card;
+  }
+}
+
+/* Thumbnail tự cuộn từ đầu tới cuối trang khi hover */
+.thumb-scroll {
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  transition: background-position 5s ease-in-out;
+}
+.group:hover .thumb-scroll,
+.group:focus-visible .thumb-scroll {
+  background-position: bottom center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .thumb-scroll { transition: none; }
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "file": "agrifresh-nong-san-sach.html",
+    "name": "AgriFresh — Nông sản sạch",
+    "slug": "agrifresh-nong-san-sach",
+    "category": "nong-san",
+    "short_description": "Landing page bán rau củ quả sạch, giao hàng tận nhà, có truy xuất nguồn gốc.",
+    "description": "Giao diện một trang cho cửa hàng/nông trại nông sản sạch.\n\n• Hero + số liệu nổi bật\n• Lưới 8 sản phẩm theo mùa\n• Giới thiệu nông trại, quy trình 4 bước\n• Chứng nhận VietGAP/GlobalGAP\n• Form đăng ký nhận hàng",
+    "price": 1290000,
+    "sale_price": 990000,
+    "tags": ["rau sạch", "VietGAP", "landing page"],
+    "is_featured": true
+  },
+  {
+    "file": "golden-mill-nha-may-che-bien.html",
+    "name": "Golden Mill — Nhà máy chế biến",
+    "slug": "golden-mill-nha-may-che-bien",
+    "category": "nha-may",
+    "short_description": "Website giới thiệu năng lực nhà máy chế biến gạo & nông sản, nhận gia công OEM.",
+    "description": "Giao diện phong cách công nghiệp cho nhà máy sản xuất.\n\n• Hero tối, số liệu công suất\n• Danh mục sản phẩm chủ lực\n• Năng lực sản xuất, quy trình khép kín\n• Chứng nhận ISO/BRCGS/HALAL\n• Form yêu cầu báo giá",
+    "price": 1890000,
+    "sale_price": null,
+    "tags": ["nhà máy", "OEM", "B2B"],
+    "is_featured": false
+  },
+  {
+    "file": "vietexport-xuat-khau-nong-san.html",
+    "name": "VietExport — Xuất khẩu nông sản",
+    "slug": "vietexport-xuat-khau-nong-san",
+    "category": "xuat-khau",
+    "short_description": "Website tiếng Anh cho doanh nghiệp xuất khẩu cà phê, tiêu, điều, trái cây.",
+    "description": "Giao diện tiếng Anh hướng tới khách hàng quốc tế.\n\n• Hero + thị trường xuất khẩu\n• Portfolio 8 mặt hàng\n• Quy trình xuất khẩu 4 bước\n• Chứng nhận quốc tế\n• Form Request a quote",
+    "price": 2190000,
+    "sale_price": 1690000,
+    "tags": ["export", "tiếng Anh", "B2B"],
+    "is_featured": true
+  },
+  {
+    "file": "highland-brew-ca-phe-dac-san.html",
+    "name": "Highland Brew — Cà phê đặc sản",
+    "slug": "highland-brew-ca-phe-dac-san",
+    "category": "do-uong",
+    "short_description": "Giao diện ấm áp cho thương hiệu cà phê đặc sản, rang xay và bán online.",
+    "description": "Giao diện cho thương hiệu cà phê/đồ uống.\n\n• Hero kể chuyện thương hiệu\n• Bộ sưu tập sản phẩm có giá\n• Câu chuyện nông trại\n• Từ hạt tới ly — quy trình\n• Form nhận ưu đãi",
+    "price": 990000,
+    "sale_price": null,
+    "tags": ["cà phê", "thương hiệu", "bán lẻ"],
+    "is_featured": false
+  }
+]

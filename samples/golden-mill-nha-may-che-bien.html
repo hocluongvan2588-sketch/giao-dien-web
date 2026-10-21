@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Mill — Nhà máy chế biến thực phẩm</title>
+<meta name="description" content="Dây chuyền tự động hoá khép kín, đạt chuẩn ISO 22000 và BRCGS. Đối tác OEM/ODM tin cậy của hơn 200 thương hiệu trong và ngoài nước.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#d08a17;--pd:#1b1f27;--a:#f2b84b;--bg:#f5f3ef;--ink:#1b1f27;--muted:#646a75;--card:#ffffff;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--p);color:#fff;padding:14px 26px;border-radius:6px;font-weight:700;transition:.2s}
+.btn:hover{background:var(--pd);transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:2px solid currentColor;color:inherit}
+.btn.sm{padding:8px 16px;font-size:14px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-weight:800;font-size:22px;display:flex;gap:10px;align-items:center}
+.logo i{width:38px;height:38px;border-radius:6px;background:var(--p);display:grid;place-items:center;font-style:normal;color:#fff}
+nav{display:flex;gap:28px;font-weight:500;font-size:15px}
+nav a:hover{color:var(--p)}
+.hero{padding:90px 0 80px;position:relative;overflow:hidden;background:linear-gradient(160deg,#1b1f27 0%,#2a303b 100%);color:#ffffff}
+.hero.split .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero.center{text-align:center}
+.hero.center p.lead{margin-left:auto;margin-right:auto}
+.eyebrow{display:inline-block;padding:6px 14px;border-radius:999px;background:color-mix(in srgb,var(--a) 22%,transparent);color:#f2b84b;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.hero h1{font-size:clamp(36px,5.4vw,64px);line-height:1.08;margin:18px 0;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--a)}
+p.lead{font-size:19px;opacity:.85;max-width:560px}
+.cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero.center .cta{justify-content:center}
+.art{aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,#f2b84b,#d08a17);display:grid;place-items:center;font-size:140px;box-shadow:0 40px 80px -30px rgba(0,0,0,.35);position:relative}
+.art .chip{position:absolute;background:#fff;color:#222;padding:12px 16px;border-radius:14px;font-size:14px;font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.art .c1{left:-20px;top:40px} .art .c2{right:-16px;bottom:50px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:-40px;position:relative}
+.stat{background:var(--card);padding:26px;border-radius:6px;box-shadow:0 10px 30px -12px rgba(0,0,0,.18);text-align:center}
+.stat b{display:block;font-size:34px;color:var(--p)}
+.stat span{color:var(--muted);font-size:14px}
+section{padding:90px 0}
+.head{text-align:center;max-width:680px;margin:0 auto 48px}
+.head small{color:var(--a);font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.head h2{font-size:clamp(28px,3.6vw,42px);line-height:1.15;margin-top:8px}
+.head p{color:var(--muted);margin-top:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prod{background:var(--card);border-radius:6px;overflow:hidden;box-shadow:0 8px 24px -14px rgba(0,0,0,.25);transition:.25s}
+.prod:hover{transform:translateY(-6px)}
+.pimg{aspect-ratio:4/3;display:grid;place-items:center;font-size:72px}
+.pbody{padding:18px}
+.pbody small{color:var(--a);font-weight:700;text-transform:uppercase;font-size:12px}
+.pbody h3{font-size:18px;margin:4px 0}
+.pbody p{color:var(--muted);font-size:14px}
+.prow{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.prow strong{color:var(--p);font-size:18px}
+.about{background:var(--card)}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about .art{font-size:110px}
+.about ul{list-style:none;margin-top:22px;display:grid;gap:12px}
+.about li{padding-left:32px;position:relative}
+.about li:before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--p);color:#fff;font-size:13px;display:grid;place-items:center}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.steps li{padding:28px;border-radius:6px;background:var(--card);border-top:4px solid var(--p)}
+.steps span{font-size:30px;font-weight:800;color:var(--a)}
+.steps h4{font-size:18px;margin:8px 0}
+.steps p{color:var(--muted);font-size:14px}
+.certs{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.cert{padding:16px 26px;border-radius:999px;border:2px dashed color-mix(in srgb,var(--p) 50%,transparent);font-weight:800;color:var(--p)}
+.contact{background:var(--pd);color:#fff}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.contact h2{font-size:clamp(28px,3.6vw,42px);line-height:1.15}
+.contact p{opacity:.85;margin-top:12px}
+form{background:#fff;color:#222;padding:30px;border-radius:6px;display:grid;gap:14px}
+input,textarea{width:100%;padding:13px 15px;border:1px solid #ddd;border-radius:10px;font:inherit}
+footer{background:#111;color:#aaa;padding:30px 0;font-size:14px;text-align:center}
+@media(max-width:960px){.grid,.steps{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.hero.split .wrap,.about .wrap,.contact .wrap{grid-template-columns:1fr}nav{display:none}}
+@media(max-width:560px){.grid,.steps{grid-template-columns:1fr}.hero{padding:60px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#"><i>🏭</i>Golden Mill</a><nav><a href="#san-pham">Sản phẩm</a><a href="#gioi-thieu">Năng lực</a><a href="#quy-trinh">Quy trình</a><a href="#lien-he">Hợp tác</a></nav><a class="btn sm" href="#lien-he">Nhận báo giá</a></div></header>
+<section class="hero center" style="padding-bottom:110px"><div class="wrap">
+<div><span class="eyebrow">Nhà máy chế biến thực phẩm</span><h1>Nhà máy chế biến gạo & nông sản <em>công suất 120.000 tấn/năm</em></h1><p class="lead">Dây chuyền tự động hoá khép kín, đạt chuẩn ISO 22000 và BRCGS. Đối tác OEM/ODM tin cậy của hơn 200 thương hiệu trong và ngoài nước.</p><div class="cta"><a class="btn" href="#san-pham">Danh mục sản phẩm</a><a class="btn ghost" href="#gioi-thieu">Tham quan nhà máy</a></div></div>
+
+</div></section>
+<div class="wrap stats"><div class="stat"><b>25+</b><span>Năm kinh nghiệm</span></div><div class="stat"><b>120K</b><span>Tấn/năm</span></div><div class="stat"><b>32</b><span>Thị trường xuất khẩu</span></div><div class="stat"><b>850</b><span>Nhân sự</span></div></div>
+<section id="san-pham"><div class="wrap"><div class="head"><small>Sản phẩm</small><h2>Danh mục sản phẩm chủ lực</h2><p>Đóng gói theo yêu cầu: 1kg – 50kg, bao PP, hút chân không, private label.</p></div><div class="grid"><article class="prod"><div class="pimg" style="background:#fbf1dc"><span>🍚</span></div><div class="pbody"><small>Gạo</small><h3>Gạo ST25</h3><p>Gạo ngon nhất thế giới 2019</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#f1ead9"><span>🌾</span></div><div class="pbody"><small>Gạo</small><h3>Gạo Jasmine 85</h3><p>Thơm dẻo, xuất khẩu</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#fde7cc"><span>🍜</span></div><div class="pbody"><small>Chế biến</small><h3>Bún gạo khô</h3><p>Không chất bảo quản</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#f7e4d4"><span>🥟</span></div><div class="pbody"><small>Chế biến</small><h3>Bánh tráng</h3><p>Phơi sấy công nghệ cao</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#efe2d2"><span>🌰</span></div><div class="pbody"><small>Hạt</small><h3>Hạt điều rang muối</h3><p>W240, W320</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#e9e2da"><span>🫘</span></div><div class="pbody"><small>Hạt</small><h3>Đậu xanh tách vỏ</h3><p>Loại 1, sạch tạp chất</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#eef0e6"><span>🥥</span></div><div class="pbody"><small>Chế biến</small><h3>Bột gạo</h3><p>Mịn, dùng cho F&B</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#e6e9ef"><span>📦</span></div><div class="pbody"><small>Dịch vụ</small><h3>Gia công OEM</h3><p>Từ 5 tấn/đơn</p><div class="prow"><strong>Liên hệ</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article></div></div></section>
+<section id="gioi-thieu" class="about"><div class="wrap"><div class="art" style="aspect-ratio:4/3">⚙️</div><div><div class="head" style="text-align:left;margin:0"><small>Về chúng tôi</small><h2>Năng lực sản xuất quy mô công nghiệp</h2><p>Hệ thống 6 dây chuyền xay xát, phân loại màu và đóng gói tự động nhập khẩu từ Nhật Bản và Đức, kho lạnh 20.000m².</p></div><ul><li>Phòng lab kiểm nghiệm đạt chuẩn ISO 17025</li><li>Truy xuất nguồn gốc theo từng lô sản xuất</li><li>Giao hàng FOB/CIF tới mọi cảng chính</li></ul></div></div></section>
+<section id="quy-trinh"><div class="wrap"><div class="head"><small>Quy trình</small><h2>Quy trình sản xuất khép kín</h2></div><ol class="steps"><li><span>01</span><h4>Thu mua</h4><p>Vùng nguyên liệu 15.000 ha liên kết</p></li><li><span>02</span><h4>Sơ chế</h4><p>Làm sạch, sấy, bảo quản</p></li><li><span>03</span><h4>Chế biến</h4><p>Xay xát, phân loại màu tự động</p></li><li><span>04</span><h4>Đóng gói</h4><p>Kiểm định & đóng gói theo đơn</p></li></ol></div></section>
+<section style="padding-top:0"><div class="wrap"><div class="head"><small>Chứng nhận</small><h2>Đạt chuẩn chất lượng</h2></div><div class="certs"><div class="cert">ISO 22000</div><div class="cert">BRCGS</div><div class="cert">HALAL</div><div class="cert">FDA</div><div class="cert">HACCP</div></div></div></section>
+<section id="lien-he" class="contact"><div class="wrap"><div><h2>Trở thành đối tác của Golden Mill</h2><p>Gửi yêu cầu để nhận báo giá OEM, mẫu sản phẩm và hồ sơ năng lực trong 24 giờ.</p><p style="margin-top:24px">📍 KCN Tân Kim, Long An<br>📞 0900 000 000 · ✉️ info@goldenmill.vn</p></div><form onsubmit="event.preventDefault();this.innerHTML='<h3>Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm.</h3>'"><input placeholder="Họ và tên" required><input placeholder="Số điện thoại" required><textarea rows="4" placeholder="Nội dung cần tư vấn"></textarea><button class="btn" style="border:0;cursor:pointer">Gửi yêu cầu</button></form></div></section>
+<footer>© 2026 Golden Mill. Thiết kế bởi Vexim Harvest.</footer>
+</body>
+</html>
