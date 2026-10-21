@@ -11,7 +11,9 @@
 <!--
   Hướng dẫn đổi ảnh: tìm các thẻ <img src="https://..."> và thay bằng link ảnh của bạn.
   Nếu ảnh không tải được, khung ảnh sẽ tự hiện hình minh hoạ thay thế.
-  Ảnh sản phẩm đang dùng hình vẽ SVG (thẻ <use href="#sp-...">), có thể thay bằng <img>.
+  Ảnh mẫu lấy từ Unsplash (giấy phép Unsplash License, dùng miễn phí). Mỗi link có dạng
+  https://unsplash.com/photos/MA-ANH/download?w=..., mở https://unsplash.com/photos/MA-ANH để xem
+  tác giả. Khi đưa website vào sử dụng thật, nên thay bằng ảnh chụp sản phẩm và nông trại của bạn.
 -->
 <style>
 :root{
@@ -97,7 +99,7 @@ header{background:#fff;position:sticky;top:0;z-index:40;box-shadow:0 1px 0 var(-
 .cats{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
 .cat{background:#fff;border-radius:var(--radius);padding:26px 14px 22px;text-align:center;border:1px solid var(--line);transition:.25s}
 .cat:hover{transform:translateY(-6px);border-color:var(--green-2);box-shadow:0 20px 34px -22px rgba(31,95,58,.5)}
-.cat .pic{width:96px;height:96px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center}
+.cat .pic{width:96px;height:96px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;position:relative;overflow:hidden}
 .cat .pic svg{width:74px;height:74px}
 .cat h3{font-size:17px;font-weight:800}
 .cat span{font-size:13px;color:var(--muted)}
@@ -121,7 +123,10 @@ header{background:#fff;position:sticky;top:0;z-index:40;box-shadow:0 1px 0 var(-
 .product{background:#fff;border-radius:var(--radius);border:1px solid var(--line);padding:16px;position:relative;transition:.25s}
 .product:hover{box-shadow:0 26px 40px -26px rgba(28,43,34,.45);transform:translateY(-4px)}
 .product[hidden]{display:none}
-.product .pic{border-radius:18px;aspect-ratio:1;display:grid;place-items:center;position:relative}
+.product .pic{border-radius:18px;aspect-ratio:1;display:grid;place-items:center;position:relative;overflow:hidden}
+.pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;transition:transform .5s}
+.product:hover .pic>img{transform:scale(1.06)}
+.label,.wish{z-index:2}
 .product .pic svg{width:72%;height:72%;transition:transform .4s}
 .product:hover .pic svg{transform:scale(1.08) rotate(-3deg)}
 .label{position:absolute;left:12px;top:12px;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;color:#fff;background:var(--orange)}
@@ -157,7 +162,9 @@ header{background:#fff;position:sticky;top:0;z-index:40;box-shadow:0 1px 0 var(-
 .countdown span{font-size:12px;color:#cfe2d5}
 .deal .art{position:relative;aspect-ratio:1;max-width:440px;justify-self:center;width:100%}
 .deal .art .bg{position:absolute;inset:8%;border-radius:50%;background:rgba(255,255,255,.08)}
-.deal .art svg{position:absolute;inset:0;width:100%;height:100%}
+.deal .art>svg{position:absolute;inset:0;width:100%;height:100%}
+.deal .art .photo{position:absolute;inset:8%;width:84%;height:84%;object-fit:cover;border-radius:50%;border:10px solid rgba(255,255,255,.12)}
+.deal .tag{z-index:2}
 .deal .tag{position:absolute;right:6%;top:10%;background:var(--yellow);color:var(--green);font-weight:900;border-radius:50%;width:100px;height:100px;display:grid;place-items:center;text-align:center;line-height:1.05;transform:rotate(-10deg)}
 
 /* Vì sao */
@@ -466,7 +473,7 @@ footer a:hover{color:var(--yellow)}
       <div class="circle"></div>
       <div class="ph photo">
         <svg><use href="#fb-food"/></svg>
-        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1000&q=80&auto=format&fit=crop" alt="Rổ rau củ tươi vừa thu hoạch" onerror="this.remove()">
+        <img src="https://unsplash.com/photos/vvZ-OibaTyg/download?w=1100" alt="Sạp rau củ ở một khu chợ tại TP.HCM" onerror="this.remove()">
       </div>
       <div class="sale-badge"><span><small>Giảm đến</small><b>30%</b><small>tuần này</small></span></div>
       <div class="float f1"><span class="dot" style="background:var(--green-soft);color:var(--green)"><svg class="ico"><use href="#i-truck"/></svg></span><span>Giao trong 3 giờ<small>Nội thành TP.HCM, Hà Nội</small></span></div>
@@ -483,12 +490,12 @@ footer a:hover{color:var(--yellow)}
       <h2>Nhà mình cần gì cũng có</h2>
     </div>
     <div class="cats">
-      <a href="#san-pham" class="cat"><div class="pic" style="background:#e3f0dc"><svg><use href="#sp-cai"/></svg></div><h3>Rau ăn lá</h3><span>64 sản phẩm</span></a>
-      <a href="#san-pham" class="cat"><div class="pic" style="background:#fff0dc"><svg><use href="#sp-carot"/></svg></div><h3>Củ quả</h3><span>52 sản phẩm</span></a>
-      <a href="#san-pham" class="cat"><div class="pic" style="background:#fff6d6"><svg><use href="#sp-xoai"/></svg></div><h3>Trái cây</h3><span>78 sản phẩm</span></a>
-      <a href="#san-pham" class="cat"><div class="pic" style="background:#f6efe0"><svg><use href="#sp-gao"/></svg></div><h3>Gạo, ngũ cốc</h3><span>26 sản phẩm</span></a>
-      <a href="#san-pham" class="cat"><div class="pic" style="background:#f7ecdf"><svg><use href="#sp-trung"/></svg></div><h3>Trứng, sữa</h3><span>18 sản phẩm</span></a>
-      <a href="#san-pham" class="cat"><div class="pic" style="background:#f2e7da"><svg><use href="#sp-hat"/></svg></div><h3>Hạt, đồ khô</h3><span>41 sản phẩm</span></a>
+      <a href="#san-pham" class="cat"><div class="pic" style="background:#e3f0dc"><svg><use href="#sp-cai"/></svg><img src="https://unsplash.com/photos/HfH5yd70ox8/download?w=300" alt="" loading="lazy" onerror="this.remove()"></div><h3>Rau ăn lá</h3><span>64 sản phẩm</span></a>
+      <a href="#san-pham" class="cat"><div class="pic" style="background:#fff0dc"><svg><use href="#sp-carot"/></svg><img src="https://unsplash.com/photos/GHRT9j21m2M/download?w=300" alt="" loading="lazy" onerror="this.remove()"></div><h3>Củ quả</h3><span>52 sản phẩm</span></a>
+      <a href="#san-pham" class="cat"><div class="pic" style="background:#fff6d6"><svg><use href="#sp-xoai"/></svg><img src="https://unsplash.com/photos/1b58fvk-AVg/download?w=300" alt="" loading="lazy" onerror="this.remove()"></div><h3>Trái cây</h3><span>78 sản phẩm</span></a>
+      <a href="#san-pham" class="cat"><div class="pic" style="background:#f6efe0"><svg><use href="#sp-gao"/></svg><img src="https://unsplash.com/photos/-LdilhDx3sk/download?w=300" alt="" loading="lazy" onerror="this.remove()"></div><h3>Gạo, ngũ cốc</h3><span>26 sản phẩm</span></a>
+      <a href="#san-pham" class="cat"><div class="pic" style="background:#f7ecdf"><svg><use href="#sp-trung"/></svg><img src="https://unsplash.com/photos/A4z0UBgAwyc/download?w=300" alt="" loading="lazy" onerror="this.remove()"></div><h3>Trứng, sữa</h3><span>18 sản phẩm</span></a>
+      <a href="#san-pham" class="cat"><div class="pic" style="background:#f2e7da"><svg><use href="#sp-hat"/></svg><img src="https://unsplash.com/photos/FhXZSP-4ARg/download?w=300" alt="" loading="lazy" onerror="this.remove()"></div><h3>Hạt, đồ khô</h3><span>41 sản phẩm</span></a>
     </div>
   </div>
 </section>
@@ -533,7 +540,7 @@ footer a:hover{color:var(--yellow)}
     </div>
     <div class="products">
       <article class="product" data-t="ban-chay">
-        <div class="pic" style="background:#e9f3e1"><svg><use href="#sp-cai"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#e9f3e1"><svg><use href="#sp-cai"/></svg><img src="https://unsplash.com/photos/HfH5yd70ox8/download?w=600" alt="Cải ngọt hữu cơ" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(214)</span></div>
           <h3>Cải ngọt hữu cơ</h3><span class="from">Nông trại Hiệp Thành, Đà Lạt</span>
@@ -541,7 +548,7 @@ footer a:hover{color:var(--yellow)}
         </div>
       </article>
       <article class="product" data-t="ban-chay giam-gia">
-        <div class="pic" style="background:#fff1e2"><span class="label">-15%</span><svg><use href="#sp-carot"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#fff1e2"><span class="label">-15%</span><svg><use href="#sp-carot"/></svg><img src="https://unsplash.com/photos/GHRT9j21m2M/download?w=600" alt="Cà rốt còn nguyên lá" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(168)</span></div>
           <h3>Cà rốt Đà Lạt</h3><span class="from">Vườn chú Bảy, Đơn Dương</span>
@@ -549,7 +556,7 @@ footer a:hover{color:var(--yellow)}
         </div>
       </article>
       <article class="product" data-t="moi">
-        <div class="pic" style="background:#fde8e4"><span class="label new">Mới</span><svg><use href="#sp-cachua"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#fde8e4"><span class="label new">Mới</span><svg><use href="#sp-cachua"/></svg><img src="https://unsplash.com/photos/SQradAOTipA/download?w=600" alt="Cà chua chín đỏ trên cành" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(42)</span></div>
           <h3>Cà chua beef</h3><span class="from">Nhà kính Lạc Dương</span>
@@ -557,7 +564,7 @@ footer a:hover{color:var(--yellow)}
         </div>
       </article>
       <article class="product" data-t="ban-chay giam-gia">
-        <div class="pic" style="background:#fff6d6"><span class="label">-20%</span><svg><use href="#sp-xoai"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#fff6d6"><span class="label">-20%</span><svg><use href="#sp-xoai"/></svg><img src="https://unsplash.com/photos/1b58fvk-AVg/download?w=600" alt="Xoài chín vàng" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(305)</span></div>
           <h3>Xoài cát Hòa Lộc</h3><span class="from">Cái Bè, Tiền Giang</span>
@@ -565,7 +572,7 @@ footer a:hover{color:var(--yellow)}
         </div>
       </article>
       <article class="product" data-t="moi">
-        <div class="pic" style="background:#fbe3ee"><span class="label new">Mới</span><svg><use href="#sp-thanhlong"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#fbe3ee"><span class="label new">Mới</span><svg><use href="#sp-thanhlong"/></svg><img src="https://unsplash.com/photos/kRSV7C1TL_4/download?w=600" alt="Thanh long ruột đỏ" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(57)</span></div>
           <h3>Thanh long ruột đỏ</h3><span class="from">Hàm Thuận Bắc, Bình Thuận</span>
@@ -573,7 +580,7 @@ footer a:hover{color:var(--yellow)}
         </div>
       </article>
       <article class="product" data-t="ban-chay">
-        <div class="pic" style="background:#f6efe0"><svg><use href="#sp-gao"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#f6efe0"><svg><use href="#sp-gao"/></svg><img src="https://unsplash.com/photos/-LdilhDx3sk/download?w=600" alt="Hạt gạo trắng" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(489)</span></div>
           <h3>Gạo ST25 túi 5kg</h3><span class="from">HTX Tân Long, Sóc Trăng</span>
@@ -581,7 +588,7 @@ footer a:hover{color:var(--yellow)}
         </div>
       </article>
       <article class="product" data-t="giam-gia">
-        <div class="pic" style="background:#f7ecdf"><span class="label">-10%</span><svg><use href="#sp-trung"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#f7ecdf"><span class="label">-10%</span><svg><use href="#sp-trung"/></svg><img src="https://unsplash.com/photos/A4z0UBgAwyc/download?w=600" alt="Trứng gà trong giỏ mây" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(131)</span></div>
           <h3>Trứng gà ta thả vườn</h3><span class="from">Trại gà cô Hạnh, Ba Vì</span>
@@ -589,7 +596,7 @@ footer a:hover{color:var(--yellow)}
         </div>
       </article>
       <article class="product" data-t="moi">
-        <div class="pic" style="background:#fdebd8"><span class="label new">Mới</span><svg><use href="#sp-bido"/></svg><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
+        <div class="pic" style="background:#fdebd8"><span class="label new">Mới</span><svg><use href="#sp-bido"/></svg><img src="https://unsplash.com/photos/buBl7GbbQ9w/download?w=600" alt="Bí đỏ vừa thu hoạch" loading="lazy" onerror="this.remove()"><button class="wish" aria-label="Yêu thích"><svg width="18" height="18"><use href="#i-heart"/></svg></button></div>
         <div class="body">
           <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span>(23)</span></div>
           <h3>Bí đỏ hồ lô</h3><span class="from">Vườn nhà anh Tùng, Mộc Châu</span>
@@ -608,7 +615,7 @@ footer a:hover{color:var(--yellow)}
         <div>
           <span class="hand">Ưu đãi trong tuần</span>
           <h2>Bưởi Năm Roi Bình Minh, vỏ mỏng, múi ráo</h2>
-          <p>Bưởi hái tại vườn ông Tư ở Vĩnh Long, để đủ 10 ngày cho ngọt rồi mới giao. Mỗi trái từ 1,2kg trở lên, không đạt thì đổi trái khác.</p>
+          <p>Bưởi hái tại vườn ông Năm ở Vĩnh Long, để đủ 10 ngày cho ngọt rồi mới giao. Mỗi trái từ 1,2kg trở lên, không đạt thì đổi trái khác.</p>
           <p class="price"><b>49.000đ</b> <s>65.000đ</s> <span style="color:#cfe2d5">/ kg</span></p>
           <div class="countdown" id="countdown">
             <div><b id="cd-d">00</b><span>Ngày</span></div>
@@ -621,6 +628,7 @@ footer a:hover{color:var(--yellow)}
         <div class="art">
           <div class="bg"></div>
           <svg><use href="#sp-buoi"/></svg>
+          <img class="photo" src="https://unsplash.com/photos/tmpJBZ1T7Vw/download?w=900" alt="Trái bưởi" onerror="this.remove()">
           <div class="tag"><span>Chỉ còn<br>120 kg</span></div>
         </div>
       </div>
@@ -643,7 +651,7 @@ footer a:hover{color:var(--yellow)}
       <div class="center">
         <div class="ph">
           <svg><use href="#fb-farmer"/></svg>
-          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&auto=format&fit=crop" alt="Nông dân chăm vườn rau" onerror="this.remove()">
+          <img src="https://unsplash.com/photos/4trSs-cdM6c/download?w=900" alt="Nông dân đội nón lá trên ruộng lúa ở Duy Xuyên, Quảng Nam" onerror="this.remove()">
         </div>
       </div>
       <ul>
@@ -664,20 +672,20 @@ footer a:hover{color:var(--yellow)}
     </div>
     <div class="farmers">
       <div class="farmer">
-        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://images.unsplash.com/photo-1595855759920-86582396756a?w=700&q=80&auto=format&fit=crop" alt="Chú Bảy ở vườn cà rốt" onerror="this.remove()"></div>
-        <div class="body"><h3>Chú Bảy Lộc</h3><span>Cà rốt, củ dền, Đơn Dương</span><p>Ba mươi năm trồng củ, chú vẫn ủ phân bò với vỏ cà phê theo cách của ông nội.</p></div>
+        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://unsplash.com/photos/1J6RCD891B4/download?w=700" alt="Anh Chu làm cỏ ruộng bậc thang" loading="lazy" onerror="this.remove()"></div>
+        <div class="body"><h3>Anh Giàng A Chu</h3><span>Lúa nương, Mù Cang Chải</span><p>Nhà anh có sáu thửa ruộng bậc thang ở xã La Pán Tẩn, mỗi năm chỉ cấy một vụ lúa nếp.</p></div>
       </div>
       <div class="farmer">
-        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=700&q=80&auto=format&fit=crop" alt="Chị Mai thu hoạch rau" onerror="this.remove()"></div>
-        <div class="body"><h3>Chị Mai Hương</h3><span>Rau ăn lá, Hiệp Thành</span><p>Bỏ nghề kế toán về Đà Lạt năm 2016, giờ chị có hai sào nhà kính trồng rau hữu cơ.</p></div>
+        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://unsplash.com/photos/DdnLKP_Yc2Y/download?w=700" alt="Bà con cấy lúa ở miền Bắc" loading="lazy" onerror="this.remove()"></div>
+        <div class="body"><h3>Chị Lò Thị Xuân</h3><span>Gạo nếp Tú Lệ, Yên Bái</span><p>Chị cùng chị em trong bản cấy lúa bằng tay, gặt xong phơi trên gác bếp cho hạt thơm.</p></div>
       </div>
       <div class="farmer">
-        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=700&q=80&auto=format&fit=crop" alt="Ông Tư ở vườn bưởi" onerror="this.remove()"></div>
-        <div class="body"><h3>Ông Tư Thành</h3><span>Bưởi Năm Roi, Bình Minh</span><p>Vườn bưởi gần hai trăm gốc, ông không dùng thuốc kích ra hoa nên mỗi năm chỉ một vụ.</p></div>
+        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://unsplash.com/photos/cJfHT9XjOoU/download?w=700" alt="Chú Thành thăm ruộng lúa ngập nước" loading="lazy" onerror="this.remove()"></div>
+        <div class="body"><h3>Chú Tư Thành</h3><span>Gạo ST25, Sóc Trăng</span><p>Ruộng chú luân canh tôm và lúa, mùa nước mặn nuôi tôm, mùa mưa cấy lúa không cần phân thuốc.</p></div>
       </div>
       <div class="farmer">
-        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=700&q=80&auto=format&fit=crop" alt="Anh Tùng ở Mộc Châu" onerror="this.remove()"></div>
-        <div class="body"><h3>Anh Tùng Thào</h3><span>Bí đỏ, su su, Mộc Châu</span><p>Người Mông ở bản Pa Phách, anh trồng bí trên nương theo mùa mưa, không tưới phân hóa học.</p></div>
+        <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://unsplash.com/photos/P-NKvMEzA2A/download?w=700" alt="Bà Sáu đội nón lá" loading="lazy" onerror="this.remove()"></div>
+        <div class="body"><h3>Bà Sáu Liên</h3><span>Rau thơm Trà Quế, Hội An</span><p>Gần bảy mươi tuổi, bà vẫn bón rau bằng rong rêu vớt dưới sông như người làng làm cả trăm năm nay.</p></div>
       </div>
     </div>
   </div>
@@ -722,15 +730,15 @@ footer a:hover{color:var(--yellow)}
     </div>
     <div class="posts">
       <article class="post">
-        <div class="ph"><span class="date">12<small>Th10</small></span><svg><use href="#fb-food"/></svg><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80&auto=format&fit=crop" alt="Đĩa rau củ trộn" onerror="this.remove()"></div>
+        <div class="ph"><span class="date">12<small>Th10</small></span><svg><use href="#fb-food"/></svg><img src="https://unsplash.com/photos/7OBJS-2CgHk/download?w=800" alt="Luống cải ngoài vườn" loading="lazy" onerror="this.remove()"></div>
         <div class="body"><span class="meta">Mẹo bảo quản</span><h3>Giữ rau ăn lá tươi cả tuần chỉ với khăn giấy và hộp kín</h3><p>Đừng rửa rau trước khi cất. Bọc khăn giấy khô, để ngăn mát dưới cùng, rau sẽ giữ được lâu hơn hẳn.</p></div>
       </article>
       <article class="post">
-        <div class="ph"><span class="date">05<small>Th10</small></span><svg><use href="#fb-food"/></svg><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80&auto=format&fit=crop" alt="Nồi canh bí đỏ" onerror="this.remove()"></div>
+        <div class="ph"><span class="date">05<small>Th10</small></span><svg><use href="#fb-food"/></svg><img src="https://unsplash.com/photos/RA4mwm9_jKA/download?w=800" alt="Bát canh rau và đôi đũa" loading="lazy" onerror="this.remove()"></div>
         <div class="body"><span class="meta">Món ngon mỗi ngày</span><h3>Canh bí đỏ nấu tôm khô, món dễ ăn cho ngày se lạnh</h3><p>Bí hồ lô Mộc Châu bở và ngọt, chỉ cần nấu với ít tôm khô và hành lá là đủ cho cả nhà.</p></div>
       </article>
       <article class="post">
-        <div class="ph"><span class="date">28<small>Th09</small></span><svg><use href="#fb-field"/></svg><img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80&auto=format&fit=crop" alt="Cánh đồng rau ở Đà Lạt" onerror="this.remove()"></div>
+        <div class="ph"><span class="date">28<small>Th09</small></span><svg><use href="#fb-field"/></svg><img src="https://unsplash.com/photos/lq6RPxANYaQ/download?w=800" alt="Rau xanh trong nhà kính" loading="lazy" onerror="this.remove()"></div>
         <div class="body"><span class="meta">Chuyện ngoài vườn</span><h3>Một ngày theo chị Hương hái rau từ bốn giờ sáng</h3><p>Rau phải hái khi trời còn sương thì mới giòn. Tụi mình theo chị từ lúc trời chưa sáng tới khi xe hàng lăn bánh.</p></div>
       </article>
     </div>
@@ -754,12 +762,12 @@ footer a:hover{color:var(--yellow)}
 </section>
 
 <div class="gallery">
-  <div class="ph"><svg><use href="#fb-field"/></svg><img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=500&q=80&auto=format&fit=crop" alt="" onerror="this.remove()"></div>
-  <div class="ph"><svg><use href="#fb-food"/></svg><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&q=80&auto=format&fit=crop" alt="" onerror="this.remove()"></div>
-  <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=500&q=80&auto=format&fit=crop" alt="" onerror="this.remove()"></div>
-  <div class="ph"><svg><use href="#fb-food"/></svg><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80&auto=format&fit=crop" alt="" onerror="this.remove()"></div>
-  <div class="ph"><svg><use href="#fb-field"/></svg><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=80&auto=format&fit=crop" alt="" onerror="this.remove()"></div>
-  <div class="ph"><svg><use href="#fb-food"/></svg><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&q=80&auto=format&fit=crop" alt="" onerror="this.remove()"></div>
+  <div class="ph"><svg><use href="#fb-field"/></svg><img src="https://unsplash.com/photos/QSTIyhwCbGo/download?w=500" alt="Gánh trái cây trên phố Hà Nội" loading="lazy" onerror="this.remove()"></div>
+  <div class="ph"><svg><use href="#fb-food"/></svg><img src="https://unsplash.com/photos/PR0ifDjFECk/download?w=500" alt="Cô bán trái cây ở chợ" loading="lazy" onerror="this.remove()"></div>
+  <div class="ph"><svg><use href="#fb-farmer"/></svg><img src="https://unsplash.com/photos/BTv0K50c_4M/download?w=500" alt="Ruộng bậc thang mùa lúa xanh" loading="lazy" onerror="this.remove()"></div>
+  <div class="ph"><svg><use href="#fb-food"/></svg><img src="https://unsplash.com/photos/QH0Y2aYUZGw/download?w=500" alt="Một buổi chợ ở Hà Nội" loading="lazy" onerror="this.remove()"></div>
+  <div class="ph"><svg><use href="#fb-field"/></svg><img src="https://unsplash.com/photos/dliEVD2QhKQ/download?w=500" alt="Cánh đồng lúa nhìn từ đồi" loading="lazy" onerror="this.remove()"></div>
+  <div class="ph"><svg><use href="#fb-food"/></svg><img src="https://unsplash.com/photos/oguTvYVwR9g/download?w=500" alt="Sạp rau buổi chiều" loading="lazy" onerror="this.remove()"></div>
 </div>
 
 <footer id="lien-he">
