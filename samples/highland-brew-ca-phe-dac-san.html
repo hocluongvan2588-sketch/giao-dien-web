@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Highland Brew — Cà phê đặc sản Tây Nguyên</title>
+<meta name="description" content="Cà phê Arabica & Robusta đặc sản, chế biến honey và natural, rang mộc mỗi tuần. Từ nông trại gia đình ba thế hệ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#7a4a2a;--pd:#3b2416;--a:#c98b4a;--bg:#fbf6ef;--ink:#2a1a10;--muted:#7a6656;--card:#fffdf9;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Lora',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--p);color:#fff;padding:14px 26px;border-radius:20px;font-weight:700;transition:.2s}
+.btn:hover{background:var(--pd);transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:2px solid currentColor;color:inherit}
+.btn.sm{padding:8px 16px;font-size:14px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-weight:800;font-size:22px;display:flex;gap:10px;align-items:center}
+.logo i{width:38px;height:38px;border-radius:20px;background:var(--p);display:grid;place-items:center;font-style:normal;color:#fff}
+nav{display:flex;gap:28px;font-weight:500;font-size:15px}
+nav a:hover{color:var(--p)}
+.hero{padding:90px 0 80px;position:relative;overflow:hidden;background:radial-gradient(circle at 80% 20%,#f3e2cc 0%,#fbf6ef 55%);color:#2a1a10}
+.hero.split .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero.center{text-align:center}
+.hero.center p.lead{margin-left:auto;margin-right:auto}
+.eyebrow{display:inline-block;padding:6px 14px;border-radius:999px;background:color-mix(in srgb,var(--a) 22%,transparent);color:#7a4a2a;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.hero h1{font-size:clamp(36px,5.4vw,64px);line-height:1.08;margin:18px 0;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--a)}
+p.lead{font-size:19px;opacity:.85;max-width:560px}
+.cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero.center .cta{justify-content:center}
+.art{aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a8714a,#3b2416);display:grid;place-items:center;font-size:140px;box-shadow:0 40px 80px -30px rgba(0,0,0,.35);position:relative}
+.art .chip{position:absolute;background:#fff;color:#222;padding:12px 16px;border-radius:14px;font-size:14px;font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.art .c1{left:-20px;top:40px} .art .c2{right:-16px;bottom:50px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:-40px;position:relative}
+.stat{background:var(--card);padding:26px;border-radius:20px;box-shadow:0 10px 30px -12px rgba(0,0,0,.18);text-align:center}
+.stat b{display:block;font-size:34px;color:var(--p)}
+.stat span{color:var(--muted);font-size:14px}
+section{padding:90px 0}
+.head{text-align:center;max-width:680px;margin:0 auto 48px}
+.head small{color:var(--a);font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.head h2{font-size:clamp(28px,3.6vw,42px);line-height:1.15;margin-top:8px}
+.head p{color:var(--muted);margin-top:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prod{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 8px 24px -14px rgba(0,0,0,.25);transition:.25s}
+.prod:hover{transform:translateY(-6px)}
+.pimg{aspect-ratio:4/3;display:grid;place-items:center;font-size:72px}
+.pbody{padding:18px}
+.pbody small{color:var(--a);font-weight:700;text-transform:uppercase;font-size:12px}
+.pbody h3{font-size:18px;margin:4px 0}
+.pbody p{color:var(--muted);font-size:14px}
+.prow{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.prow strong{color:var(--p);font-size:18px}
+.about{background:var(--card)}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about .art{font-size:110px}
+.about ul{list-style:none;margin-top:22px;display:grid;gap:12px}
+.about li{padding-left:32px;position:relative}
+.about li:before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--p);color:#fff;font-size:13px;display:grid;place-items:center}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.steps li{padding:28px;border-radius:20px;background:var(--card);border-top:4px solid var(--p)}
+.steps span{font-size:30px;font-weight:800;color:var(--a)}
+.steps h4{font-size:18px;margin:8px 0}
+.steps p{color:var(--muted);font-size:14px}
+.certs{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.cert{padding:16px 26px;border-radius:999px;border:2px dashed color-mix(in srgb,var(--p) 50%,transparent);font-weight:800;color:var(--p)}
+.contact{background:var(--pd);color:#fff}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.contact h2{font-size:clamp(28px,3.6vw,42px);line-height:1.15}
+.contact p{opacity:.85;margin-top:12px}
+form{background:#fff;color:#222;padding:30px;border-radius:20px;display:grid;gap:14px}
+input,textarea{width:100%;padding:13px 15px;border:1px solid #ddd;border-radius:10px;font:inherit}
+footer{background:#111;color:#aaa;padding:30px 0;font-size:14px;text-align:center}
+@media(max-width:960px){.grid,.steps{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.hero.split .wrap,.about .wrap,.contact .wrap{grid-template-columns:1fr}nav{display:none}}
+@media(max-width:560px){.grid,.steps{grid-template-columns:1fr}.hero{padding:60px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#"><i>☕</i>Highland Brew</a><nav><a href="#san-pham">Cà phê</a><a href="#gioi-thieu">Câu chuyện</a><a href="#quy-trinh">Từ hạt tới ly</a><a href="#lien-he">Liên hệ</a></nav><a class="btn sm" href="#lien-he">Mua ngay</a></div></header>
+<section class="hero split" style="padding-bottom:110px"><div class="wrap">
+<div><span class="eyebrow">Cà phê đặc sản Tây Nguyên</span><h1>Hương vị <em>nguyên bản</em> từ cao nguyên Lâm Đồng</h1><p class="lead">Cà phê Arabica & Robusta đặc sản, chế biến honey và natural, rang mộc mỗi tuần. Từ nông trại gia đình ba thế hệ.</p><div class="cta"><a class="btn" href="#san-pham">Khám phá cà phê</a><a class="btn ghost" href="#gioi-thieu">Câu chuyện của chúng tôi</a></div></div>
+<div class="art">☕<div class="chip c1">🔥 Rang mới mỗi tuần</div><div class="chip c2">⭐ 4.9/5 · 3.200 đánh giá</div></div>
+</div></section>
+<div class="wrap stats"><div class="stat"><b>3</b><span>Thế hệ trồng cà phê</span></div><div class="stat"><b>84+</b><span>Điểm SCA</span></div><div class="stat"><b>1.600m</b><span>Độ cao canh tác</span></div><div class="stat"><b>20K</b><span>Khách hàng</span></div></div>
+<section id="san-pham"><div class="wrap"><div class="head"><small>Cà phê</small><h2>Bộ sưu tập rang mộc</h2><p>Xay theo yêu cầu: phin, pha máy, pour over, cold brew.</p></div><div class="grid"><article class="prod"><div class="pimg" style="background:#efe1d1"><span>☕</span></div><div class="pbody"><small>Arabica</small><h3>Cầu Đất Honey</h3><p>Mật ong, cam, sô-cô-la</p><div class="prow"><strong>245.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#e9dbcc"><span>🫘</span></div><div class="pbody"><small>Robusta</small><h3>Robusta Fine</h3><p>Đậm, hậu ngọt</p><div class="prow"><strong>165.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#f3dcd6"><span>🍒</span></div><div class="pbody"><small>Arabica</small><h3>Natural Process</h3><p>Trái cây chín, rượu vang</p><div class="prow"><strong>285.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#efe7da"><span>🥛</span></div><div class="pbody"><small>Blend</small><h3>Phin Blend</h3><p>Pha phin truyền thống</p><div class="prow"><strong>135.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#e2e8ec"><span>🧊</span></div><div class="pbody"><small>Blend</small><h3>Cold Brew Pack</h3><p>10 túi lọc tiện lợi</p><div class="prow"><strong>189.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#f3e3cf"><span>🎁</span></div><div class="pbody"><small>Quà tặng</small><h3>Hộp quà Tết</h3><p>3 loại x 250g</p><div class="prow"><strong>590.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#e8e0d4"><span>🫖</span></div><div class="pbody"><small>Dụng cụ</small><h3>Phin nhôm cao cấp</h3><p>Pha chuẩn vị</p><div class="prow"><strong>95.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article><article class="prod"><div class="pimg" style="background:#f4e4ea"><span>🌸</span></div><div class="pbody"><small>Đặc biệt</small><h3>Geisha Lâm Đồng</h3><p>Số lượng giới hạn</p><div class="prow"><strong>650.000₫</strong><a href="#lien-he" class="btn sm">Đặt hàng</a></div></div></article></div></div></section>
+<section id="gioi-thieu" class="about"><div class="wrap"><div class="art" style="aspect-ratio:4/3">🌄</div><div><div class="head" style="text-align:left;margin:0"><small>Về chúng tôi</small><h2>Ba thế hệ, một tình yêu với hạt cà phê</h2><p>Từ năm 1985, gia đình chúng tôi canh tác cà phê dưới tán rừng thông Cầu Đất, hái chín 100% và chế biến thủ công.</p></div><ul><li>Hái chọn lọc 100% trái chín đỏ</li><li>Phơi trên giàn cao 21–28 ngày</li><li>Rang mộc, không tẩm ướp hương liệu</li></ul></div></div></section>
+<section id="quy-trinh"><div class="wrap"><div class="head"><small>Quy trình</small><h2>Từ hạt cà phê tới ly cà phê</h2></div><ol class="steps"><li><span>01</span><h4>Canh tác</h4><p>Dưới tán rừng ở độ cao 1.600m</p></li><li><span>02</span><h4>Thu hái</h4><p>Hái tay từng trái chín</p></li><li><span>03</span><h4>Chế biến</h4><p>Honey, natural, washed</p></li><li><span>04</span><h4>Rang xay</h4><p>Rang mới mỗi tuần, giao trong 48h</p></li></ol></div></section>
+<section style="padding-top:0"><div class="wrap"><div class="head"><small>Chứng nhận</small><h2>Đạt chuẩn chất lượng</h2></div><div class="certs"><div class="cert">Specialty 84+ SCA</div><div class="cert">OCOP 5★</div><div class="cert">USDA Organic</div><div class="cert">UTZ</div></div></div></section>
+<section id="lien-he" class="contact"><div class="wrap"><div><h2>Nhận ưu đãi 15% cho đơn đầu tiên</h2><p>Để lại thông tin, chúng tôi sẽ gửi mã giảm giá và tư vấn loại cà phê hợp gu của bạn.</p><p style="margin-top:24px">📍 Cầu Đất, Đà Lạt, Lâm Đồng<br>📞 0900 000 000 · ✉️ info@highlandbrew.vn</p></div><form onsubmit="event.preventDefault();this.innerHTML='<h3>Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm.</h3>'"><input placeholder="Họ và tên" required><input placeholder="Số điện thoại" required><textarea rows="4" placeholder="Nội dung cần tư vấn"></textarea><button class="btn" style="border:0;cursor:pointer">Gửi yêu cầu</button></form></div></section>
+<footer>© 2026 Highland Brew. Thiết kế bởi Vexim Harvest.</footer>
+</body>
+</html>
