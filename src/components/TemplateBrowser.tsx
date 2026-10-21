@@ -79,7 +79,7 @@ export function TemplateBrowser({ templates }: { templates: TemplateCardData[] }
           <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
           <input
             className="input rounded-full pl-10"
-            placeholder="Tìm giao diện…"
+            placeholder="Tìm giao diện"
             value={query}
             onChange={(e) => { setQuery(e.target.value); setLimit(PAGE_SIZE); }}
             aria-label="Tìm giao diện"

@@ -92,7 +92,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
   }
 
   async function uploadZip(file: File) {
-    setStatus({ type: "info", text: "Đang tải file ZIP lên…" });
+    setStatus({ type: "info", text: "Đang tải file ZIP lên..." });
     try {
       setSourcePath(await uploadZipFile(file));
       setZipName(file.name);
@@ -117,9 +117,9 @@ export function TemplateForm({ initial }: { initial?: Template }) {
     setStatus(null);
     setBusy(true);
     try {
-      setPkgStep(`Đang tải ${file.name} lên (${(file.size / 1024 / 1024).toFixed(1)} MB)…`);
+      setPkgStep(`Đang tải ${file.name} lên (${(file.size / 1024 / 1024).toFixed(1)} MB)...`);
       const path = await uploadZipFile(file);
-      setPkgStep("Đang giải nén và đưa CSS, JS, ảnh lên máy chủ…");
+      setPkgStep("Đang giải nén và đưa CSS, JS, ảnh lên máy chủ...");
       const res = await fetch("/api/admin/package", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -175,7 +175,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
   async function save(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
-    setStatus({ type: "info", text: "Đang lưu…" });
+    setStatus({ type: "info", text: "Đang lưu..." });
     const payload = {
       ...form,
       sale_price: form.sale_price === "" ? null : Number(form.sale_price),
@@ -210,7 +210,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
   }
 
   async function remove() {
-    if (!initial || !confirm(`Xoá giao diện “${initial.name}”? Không thể hoàn tác.`)) return;
+    if (!initial || !confirm(`Xoá giao diện "${initial.name}"? Không thể hoàn tác.`)) return;
     setBusy(true);
     const res = await fetch(`/api/admin/templates/${initial.id}`, { method: "DELETE" });
     const data = await res.json();
@@ -258,7 +258,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
                   <p className="font-medium text-ink">{pkg ? pkg.name : "Đang dùng gói ZIP"}</p>
                   <p className="text-xs text-zinc-500">
                     {pkg
-                      ? `${pkg.fileCount} file · ${(pkg.totalBytes / 1024 / 1024).toFixed(1)} MB · CSS, JS và ảnh lấy từ gói`
+                      ? `${pkg.fileCount} file, ${(pkg.totalBytes / 1024 / 1024).toFixed(1)} MB, CSS, JS và ảnh lấy từ gói`
                       : "CSS, JS và ảnh lấy từ thư mục đã giải nén"}
                   </p>
                 </div>
@@ -319,7 +319,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
           <h2 className="font-bold">3. Thông tin sản phẩm</h2>
           <div>
             <label className="label" htmlFor="name">Tên giao diện</label>
-            <input id="name" className="input" required value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="VD: AgriFresh — Nông sản sạch" />
+            <input id="name" className="input" required value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="VD: Vựa Xanh, cửa hàng rau hữu cơ" />
           </div>
           <div>
             <label className="label" htmlFor="slug">Slug (URL)</label>
@@ -347,7 +347,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
           </div>
           <div>
             <label className="label" htmlFor="desc">Mô tả chi tiết</label>
-            <textarea id="desc" className="input h-32" value={form.description} onChange={(e) => set("description", e.target.value)} placeholder="Các trang có trong giao diện, tính năng nổi bật…" />
+            <textarea id="desc" className="input h-32" value={form.description} onChange={(e) => set("description", e.target.value)} placeholder="Các trang có trong giao diện, tính năng nổi bật..." />
           </div>
           <div>
             <label className="label" htmlFor="tags">Tags (phân cách bằng dấu phẩy)</label>
@@ -360,7 +360,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
             </label>
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={form.is_featured} onChange={(e) => set("is_featured", e.target.checked)} className="h-4 w-4 accent-brand-700" />
-              Gắn nhãn “Bán chạy”
+              Gắn nhãn "Bán chạy"
             </label>
           </div>
         </section>
@@ -409,7 +409,7 @@ export function TemplateForm({ initial }: { initial?: Template }) {
         <div className="sticky bottom-4 space-y-3">
           {status && <p className={`rounded-xl px-3 py-2 text-sm ${statusCls[status.type]}`} role="status">{status.text}</p>}
           <div className="flex gap-2">
-            <button type="submit" disabled={busy} className="btn-primary flex-1 py-3">{busy ? "Đang xử lý…" : isEdit ? "Lưu thay đổi" : "Lưu & tạo thumbnail"}</button>
+            <button type="submit" disabled={busy} className="btn-primary flex-1 py-3">{busy ? "Đang xử lý..." : isEdit ? "Lưu thay đổi" : "Lưu & tạo thumbnail"}</button>
             {isEdit && (
               <a href={`/templates/${form.slug}`} target="_blank" rel="noopener" className="btn-ghost py-3">Xem</a>
             )}

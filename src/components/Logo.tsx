@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="group flex items-center gap-2.5" aria-label="Vexim Harvest — Trang chủ">
+    <Link href="/" className="group flex items-center gap-2.5" aria-label="Vexim Harvest, về trang chủ">
       <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-[10px] bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25),0_1px_2px_rgba(0,0,0,.2)]">
         <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M12 21V11" />

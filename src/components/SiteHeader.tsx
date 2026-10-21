@@ -3,9 +3,9 @@ import { Logo } from "./Logo";
 import { getCurrentUser, isAdminEmail } from "@/lib/auth";
 
 const NAV = [
-  ["/#giao-dien", "Giao diện"],
-  ["/#tinh-nang", "Tính năng"],
-  ["/#quy-trinh", "Quy trình mua"],
+  ["/#giao-dien", "Kho giao diện"],
+  ["/#khac-biet", "Khác ở đâu"],
+  ["/#lam-rieng", "Làm nội dung riêng"],
   ["/#faq", "Hỏi đáp"],
 ] as const;
 

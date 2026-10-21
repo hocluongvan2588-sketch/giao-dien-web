@@ -55,7 +55,7 @@ export default async function AccountPage() {
                   <div className="min-w-0 flex-1">
                     <Link href={`/templates/${t.slug}`} className="font-bold hover:text-brand-600">{t.name}</Link>
                     <p className="mt-1 text-sm text-zinc-600">
-                      Mã đơn <span className="font-mono">{o.code}</span> · {formatDate(o.created_at)} · {formatVnd(o.amount)}
+                      Mã đơn <span className="font-mono">{o.code}</span>, {formatDate(o.created_at)}, {formatVnd(o.amount)}
                     </p>
                     <span className={`mt-2 inline-block rounded-full px-2.5 py-1 text-xs font-semibold ${s.cls}`}>{s.label}</span>
                   </div>

@@ -12,7 +12,7 @@ export function ImportSamples() {
 
   async function run() {
     setBusy(true);
-    setMessage("Đang nhập giao diện mẫu…");
+    setMessage("Đang nhập giao diện mẫu...");
     const res = await fetch("/api/admin/samples", { method: "POST" });
     const data = await res.json().catch(() => ({ error: "Lỗi không xác định" }));
     if (!res.ok) {
@@ -32,7 +32,7 @@ export function ImportSamples() {
     setMessage(
       ids.length === 0
         ? "Các giao diện mẫu đã có sẵn."
-        : `Đã nhập ${ids.length} giao diện mẫu${failed ? ` (${failed} thumbnail chưa chụp được, hãy mở giao diện và bấm “Chụp lại tự động”)` : ""}.`,
+        : `Đã nhập ${ids.length} giao diện mẫu${failed ? ` (${failed} thumbnail chưa chụp được, hãy mở giao diện và bấm "Chụp lại tự động")` : ""}.`,
     );
     router.refresh();
   }
@@ -41,7 +41,7 @@ export function ImportSamples() {
     <div className="flex flex-wrap items-center gap-3">
       {capture && <CaptureProgress state={capture} onClose={() => setCapture(null)} />}
       <button type="button" onClick={run} disabled={busy} className="btn-ghost">
-        {busy ? "Đang xử lý…" : "Nhập giao diện mẫu"}
+        {busy ? "Đang xử lý..." : "Nhập giao diện mẫu"}
       </button>
       {message && <span className="text-sm text-zinc-600" role="status">{message}</span>}
     </div>

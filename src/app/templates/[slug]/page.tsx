@@ -89,11 +89,11 @@ export default async function TemplateDetailPage({ params }: Props) {
               <a href={`/demo/${t.slug}`} target="_blank" rel="noopener" className="btn-ghost mt-2 w-full py-3"><Eye className="h-4 w-4" /> Xem demo toàn màn hình</a>
               <ul className="mt-6 space-y-3 border-t border-zinc-100 pt-6 text-sm text-zinc-700">
                 {[
-                  "Mã nguồn HTML/CSS/JS đầy đủ",
-                  "Responsive desktop · tablet · mobile",
-                  "Thanh toán VietQR, nhận file tự động",
-                  "Tải lại không giới hạn",
-                  "Hỗ trợ cài đặt từ Vexim Global",
+                  "Mã nguồn đầy đủ, bản không có nhãn demo",
+                  "Chạy tốt trên máy tính, máy tính bảng, điện thoại",
+                  "Thanh toán VietQR, chuyển khoản xong là tải file",
+                  "Tải lại bao nhiêu lần cũng được",
+                  "Vexim hỗ trợ cài đặt nếu bạn cần",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2.5">
                     <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-50 text-brand-600">
@@ -111,6 +111,11 @@ export default async function TemplateDetailPage({ params }: Props) {
                 </div>
               )}
               {t.sales_count > 0 && <p className="mt-4 text-xs text-zinc-500">{t.sales_count} khách hàng đã mua</p>}
+              <div className="mt-6 rounded-xl bg-zinc-50 p-4 text-sm">
+                <p className="font-medium text-ink">Cần nội dung viết cho buyer nước ngoài?</p>
+                <p className="mt-1 text-zinc-500">Vexim viết lại nội dung tiếng Việt và tiếng Anh theo thị trường bạn nhắm tới.</p>
+                <Link href="/#lam-rieng" className="mt-2 inline-block font-medium text-brand-700 hover:underline">Xem cách làm</Link>
+              </div>
             </div>
           </aside>
         </div>

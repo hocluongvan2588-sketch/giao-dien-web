@@ -33,7 +33,7 @@ export function BuyButton({ templateId, slug, label = "Mua ngay" }: { templateId
   return (
     <div>
       <button onClick={buy} disabled={loading} className="btn-primary w-full py-3 text-base">
-        {loading ? "Đang tạo đơn…" : label}
+        {loading ? "Đang tạo đơn..." : label}
       </button>
       {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
     </div>

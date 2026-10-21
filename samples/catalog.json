@@ -17,11 +17,11 @@
   },
   {
     "file": "dat-lanh-farm-thuc-pham-sach.html",
-    "name": "Đất Lành Farm — Thực phẩm sạch có câu chuyện",
+    "name": "Đất Lành Farm, thực phẩm sạch có câu chuyện",
     "slug": "dat-lanh-farm-thuc-pham-sach",
     "category": "thuc-pham",
     "short_description": "Website bán thực phẩm sạch kể chuyện người nông dân và vùng trồng, có lọc sản phẩm và giỏ hàng.",
-    "description": "Giao diện bán nông sản/thực phẩm theo phong cách kể chuyện thương hiệu.\n\n• Hero toàn màn hình ảnh vùng trồng + trích dẫn của người nông dân\n• Câu chuyện thương hiệu, nhà sáng lập\n• 3 vùng trồng (Mộc Châu, Đà Lạt, Đồng Tháp) với độ cao, khí hậu, số nông hộ\n• Cửa hàng 8 sản phẩm, lọc theo danh mục, nút thêm vào giỏ\n• Hành trình 5 bước từ hạt giống đến bàn ăn, số liệu, chứng nhận\n• Đánh giá khách hàng, gói thành viên, nhật ký nông trại\n• Responsive, menu mobile, hiệu ứng xuất hiện khi cuộn\n• Ảnh có minh hoạ dự phòng nếu link ảnh lỗi",
+    "description": "Giao diện bán nông sản/thực phẩm theo phong cách kể chuyện thương hiệu.\n\nHero toàn màn hình ảnh vùng trồng và trích dẫn của người nông dân\nCâu chuyện thương hiệu, nhà sáng lập\n3 vùng trồng (Mộc Châu, Đà Lạt, Đồng Tháp) với độ cao, khí hậu, số nông hộ\nCửa hàng 8 sản phẩm, lọc theo danh mục, nút thêm vào giỏ\nHành trình 5 bước từ hạt giống đến bàn ăn, số liệu, chứng nhận\nĐánh giá khách hàng, gói thành viên, nhật ký nông trại\nResponsive, menu mobile, hiệu ứng xuất hiện khi cuộn\nẢnh có minh hoạ dự phòng nếu link ảnh lỗi",
     "price": 1490000,
     "sale_price": 1190000,
     "tags": [
@@ -33,11 +33,11 @@
   },
   {
     "file": "agrifresh-nong-san-sach.html",
-    "name": "AgriFresh — Nông sản sạch",
+    "name": "AgriFresh, nông sản sạch",
     "slug": "agrifresh-nong-san-sach",
     "category": "nong-san",
     "short_description": "Landing page bán rau củ quả sạch, giao hàng tận nhà, có truy xuất nguồn gốc.",
-    "description": "Giao diện một trang cho cửa hàng/nông trại nông sản sạch.\n\n• Hero + số liệu nổi bật\n• Lưới 8 sản phẩm theo mùa\n• Giới thiệu nông trại, quy trình 4 bước\n• Chứng nhận VietGAP/GlobalGAP\n• Form đăng ký nhận hàng",
+    "description": "Giao diện một trang cho cửa hàng/nông trại nông sản sạch.\n\nHero và số liệu nổi bật\nLưới 8 sản phẩm theo mùa\nGiới thiệu nông trại, quy trình 4 bước\nChứng nhận VietGAP/GlobalGAP\nForm đăng ký nhận hàng",
     "price": 1290000,
     "sale_price": 990000,
     "tags": [
@@ -49,11 +49,11 @@
   },
   {
     "file": "golden-mill-nha-may-che-bien.html",
-    "name": "Golden Mill — Nhà máy chế biến",
+    "name": "Golden Mill, nhà máy chế biến",
     "slug": "golden-mill-nha-may-che-bien",
     "category": "nha-may",
     "short_description": "Website giới thiệu năng lực nhà máy chế biến gạo & nông sản, nhận gia công OEM.",
-    "description": "Giao diện phong cách công nghiệp cho nhà máy sản xuất.\n\n• Hero tối, số liệu công suất\n• Danh mục sản phẩm chủ lực\n• Năng lực sản xuất, quy trình khép kín\n• Chứng nhận ISO/BRCGS/HALAL\n• Form yêu cầu báo giá",
+    "description": "Giao diện phong cách công nghiệp cho nhà máy sản xuất.\n\nHero tối, số liệu công suất\nDanh mục sản phẩm chủ lực\nNăng lực sản xuất, quy trình khép kín\nChứng nhận ISO/BRCGS/HALAL\nForm yêu cầu báo giá",
     "price": 1890000,
     "sale_price": null,
     "tags": [
@@ -65,11 +65,11 @@
   },
   {
     "file": "vietexport-xuat-khau-nong-san.html",
-    "name": "VietExport — Xuất khẩu nông sản",
+    "name": "VietExport, xuất khẩu nông sản",
     "slug": "vietexport-xuat-khau-nong-san",
     "category": "xuat-khau",
     "short_description": "Website tiếng Anh cho doanh nghiệp xuất khẩu cà phê, tiêu, điều, trái cây.",
-    "description": "Giao diện tiếng Anh hướng tới khách hàng quốc tế.\n\n• Hero + thị trường xuất khẩu\n• Portfolio 8 mặt hàng\n• Quy trình xuất khẩu 4 bước\n• Chứng nhận quốc tế\n• Form Request a quote",
+    "description": "Giao diện tiếng Anh hướng tới khách hàng quốc tế.\n\nHero và thị trường xuất khẩu\nPortfolio 8 mặt hàng\nQuy trình xuất khẩu 4 bước\nChứng nhận quốc tế\nForm Request a quote",
     "price": 2190000,
     "sale_price": 1690000,
     "tags": [
@@ -81,11 +81,11 @@
   },
   {
     "file": "highland-brew-ca-phe-dac-san.html",
-    "name": "Highland Brew — Cà phê đặc sản",
+    "name": "Highland Brew, cà phê đặc sản",
     "slug": "highland-brew-ca-phe-dac-san",
     "category": "do-uong",
     "short_description": "Giao diện ấm áp cho thương hiệu cà phê đặc sản, rang xay và bán online.",
-    "description": "Giao diện cho thương hiệu cà phê/đồ uống.\n\n• Hero kể chuyện thương hiệu\n• Bộ sưu tập sản phẩm có giá\n• Câu chuyện nông trại\n• Từ hạt tới ly — quy trình\n• Form nhận ưu đãi",
+    "description": "Giao diện cho thương hiệu cà phê/đồ uống.\n\nHero kể chuyện thương hiệu\nBộ sưu tập sản phẩm có giá\nCâu chuyện nông trại\nTừ hạt tới ly, quy trình\nForm nhận ưu đãi",
     "price": 990000,
     "sale_price": null,
     "tags": [

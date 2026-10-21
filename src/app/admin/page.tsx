@@ -28,7 +28,7 @@ export default async function AdminHome() {
         <h1 className="text-lg font-bold text-red-700">Không đọc được bảng templates</h1>
         <p className="mt-2 text-zinc-700">Lỗi từ Supabase: <code>{error.message}</code></p>
         <p className="mt-2 text-zinc-700">
-          Nếu bạn chưa tạo bảng, hãy mở Supabase → SQL Editor và chạy toàn bộ file <code>supabase/schema.sql</code>.
+          Nếu bạn chưa tạo bảng, hãy vào Supabase, mở mục SQL Editor và chạy toàn bộ file <code>supabase/schema.sql</code>.
           Kiểm tra thêm biến <code>SUPABASE_SERVICE_ROLE_KEY</code> trên Vercel.
         </p>
       </div>

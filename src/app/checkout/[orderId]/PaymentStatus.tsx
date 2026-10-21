@@ -46,7 +46,7 @@ export function PaymentStatus({ orderId, initialStatus }: { orderId: string; ini
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-earth-400 opacity-75" />
         <span className="relative inline-flex h-3 w-3 rounded-full bg-earth-500" />
       </span>
-      Đang chờ thanh toán… Trang sẽ tự cập nhật khi nhận được tiền.
+      Đang chờ thanh toán. Trang sẽ tự cập nhật khi tiền về tài khoản.
     </div>
   );
 }

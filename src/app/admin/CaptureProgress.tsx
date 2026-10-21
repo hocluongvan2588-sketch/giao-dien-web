@@ -115,7 +115,7 @@ export function CaptureProgress({
             {state.phase === "running"
               ? state.mode === "upload"
                 ? "Chỉ mất vài giây."
-                : "Thường mất 10–30 giây. Vui lòng không đóng trang."
+                : "Thường mất 10 đến 30 giây. Vui lòng không đóng trang."
               : state.phase === "done"
                 ? `Hoàn tất sau ${elapsed.toFixed(1)} giây`
                 : state.error}

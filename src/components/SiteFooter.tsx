@@ -10,8 +10,8 @@ export function SiteFooter() {
         <div className="md:col-span-5">
           <Logo light />
           <p className="mt-5 max-w-sm text-sm leading-relaxed">
-            Dịch vụ giao diện website của Vexim Global dành cho doanh nghiệp nông sản, thực phẩm,
-            nhà máy sản xuất và xuất nhập khẩu.
+            Vexim Harvest là kho giao diện website của Vexim Global, đơn vị tư vấn xuất khẩu. Mỗi giao diện được
+            chọn và chỉnh theo cách buyer nước ngoài đọc website của nhà cung cấp.
           </p>
         </div>
         <div className="md:col-span-3">
@@ -36,7 +36,7 @@ export function SiteFooter() {
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col justify-between gap-2 py-6 text-xs text-zinc-500 sm:flex-row">
           <span>© {new Date().getFullYear()} Vexim Global. Bảo lưu mọi quyền.</span>
-          <span>Thanh toán an toàn qua VietQR</span>
+          <span>Thanh toán qua VietQR, nhận file ngay</span>
         </div>
       </div>
     </footer>

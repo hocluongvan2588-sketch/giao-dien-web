@@ -71,7 +71,7 @@ export function LoginForm() {
         <p className={`rounded-xl px-3 py-2 text-sm ${message.type === "error" ? "bg-red-50 text-red-700" : "bg-brand-50 text-ink"}`}>{message.text}</p>
       )}
       <button type="submit" disabled={loading} className="btn-primary w-full py-3">
-        {loading ? "Đang xử lý…" : mode === "login" ? "Đăng nhập" : "Đăng ký"}
+        {loading ? "Đang xử lý..." : mode === "login" ? "Đăng nhập" : "Đăng ký"}
       </button>
       <p className="text-center text-sm text-zinc-600">
         {mode === "login" ? "Chưa có tài khoản?" : "Đã có tài khoản?"}{" "}

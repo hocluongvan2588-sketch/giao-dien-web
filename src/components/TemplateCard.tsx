@@ -20,7 +20,7 @@ export function TemplateCard({ t }: { t: TemplateCardData }) {
           {t.thumbnail_url ? (
             <div className="thumb-scroll absolute inset-0" style={{ backgroundImage: `url("${t.thumbnail_url}")` }} role="img" aria-label={`Ảnh giao diện ${t.name}`} />
           ) : (
-            <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-zinc-50 to-zinc-100 text-xs text-zinc-400">Đang tạo ảnh xem trước…</div>
+            <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-zinc-50 to-zinc-100 text-xs text-zinc-400">Đang tạo ảnh xem trước</div>
           )}
           {/* Lớp nút khi hover */}
           <Link href={`/templates/${t.slug}`} className="absolute inset-0" aria-label={`Xem chi tiết ${t.name}`} tabIndex={-1} />
@@ -46,7 +46,7 @@ export function TemplateCard({ t }: { t: TemplateCardData }) {
           </h3>
           <p className="mt-1 truncate text-[13px] text-zinc-500">
             {categoryLabel(t.category)}
-            {t.sales_count > 0 && <> · {t.sales_count} lượt mua</>}
+            {t.sales_count > 0 && <>, {t.sales_count} lượt mua</>}
           </p>
         </div>
         <div className="shrink-0 text-right">

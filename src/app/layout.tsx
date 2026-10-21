@@ -12,9 +12,9 @@ const font = Be_Vietnam_Pro({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
-  title: { default: `${SITE_NAME} — ${SITE_TAGLINE}`, template: `%s · ${SITE_NAME}` },
+  title: { default: `${SITE_NAME} | ${SITE_TAGLINE}`, template: `%s | ${SITE_NAME}` },
   description:
-    "Vexim Harvest by Vexim Global: giao diện website HTML chuẩn responsive cho doanh nghiệp nông sản, thực phẩm sạch, nhà máy sản xuất và xuất nhập khẩu. Xem demo trực tiếp, thanh toán VietQR, nhận file ngay.",
+    "Giao diện website cho doanh nghiệp nông sản, thực phẩm và nhà máy, được Vexim Global chọn và chỉnh theo góc nhìn của buyer nước ngoài. Xem demo, thanh toán VietQR, tải file ngay.",
   openGraph: { siteName: SITE_NAME, locale: "vi_VN", type: "website" },
 };
 

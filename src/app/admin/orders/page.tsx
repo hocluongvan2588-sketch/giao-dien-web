@@ -14,7 +14,7 @@ export default async function AdminOrdersPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold">Đơn hàng</h1>
-      <p className="mt-1 text-sm text-zinc-600">Đơn được xác nhận tự động qua webhook SePay. Dùng “Xác nhận” khi khách chuyển sai nội dung.</p>
+      <p className="mt-1 text-sm text-zinc-600">Đơn được xác nhận tự động qua webhook SePay. Dùng "Xác nhận" khi khách chuyển sai nội dung.</p>
       <div className="card mt-6 overflow-x-auto">
         <table className="w-full min-w-[860px] text-sm">
           <thead className="border-b border-zinc-200 text-left text-xs uppercase tracking-wide text-zinc-500">
